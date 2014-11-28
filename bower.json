@@ -1,6 +1,6 @@
 {
   "name": "uqlibrary-home",
-  "description": "A simple home app.",
+  "description": "A simple home app",
   "main": "uqlibrary-home.html",
   "license": "MIT",
   "private": true,
