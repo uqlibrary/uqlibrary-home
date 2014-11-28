@@ -1,0 +1,55 @@
+@import "../uqlibrary-elements/resources/theme/element";
+
+:host {
+}
+
+core-drawer-panel {
+  background-color: #fafafa;
+}
+
+#booking {
+  margin: 16px;
+}
+
+#drawer {
+  background-color: $text;
+  color: $text-inverse;
+}
+
+core-toolbar {
+  background-color: $primary-500;
+  border-bottom: 1px solid $primary-700;
+  color: $text-inverse;
+}
+
+core-menu {
+  margin: 0;
+}
+
+core-header-panel {
+ &#drawer {
+   core-menu {
+     paper-item {
+       &.core-selected {
+         color: $text-inverse;
+         background-color: $text;
+       }
+     }
+   }
+ }
+}
+
+.apps {
+  margin-top: 10px;
+}
+
+.app {
+  box-sizing: border-box;
+  margin: 6px;
+  min-height: 44px;
+  min-width: 44px;
+  font-size: 0.875em;
+  font-weight: 500;
+  color: $secondary-text;
+  text-align: center;
+}

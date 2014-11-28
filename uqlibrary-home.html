@@ -1,0 +1,108 @@
+<link rel="import" href="../uqlibrary-elements/0.5.1/lib/vulcanized.html">
+
+<polymer-element name="uqlibrary-home">
+
+  <template>
+    <link rel="stylesheet" href="uqlibrary-home.css">
+
+    <core-drawer-panel id="drawerPanel" responsiveWidth="9999px">
+
+      <core-header-panel drawer id="drawer">
+        <core-menu selectedAttribute="">
+          <paper-item>Dashboard</paper-item>
+          <paper-item>Agenda</paper-item>
+          <paper-item>Study</paper-item>
+          <paper-item>Library</paper-item>
+          <paper-item>News</paper-item>
+          <paper-item>Events</paper-item>
+          <paper-item>Settings</paper-item>
+          <paper-item>Logout</paper-item>
+        </core-menu>
+      </core-header-panel>
+
+      <core-header-panel main id="main">
+        <core-toolbar>
+          <paper-icon-button icon="menu"
+                             on-tap="{{togglePanel}}"></paper-icon-button>
+          <span flex id="toolbar-page-title">UQ Library</span>
+          <paper-icon-button on-click="{{launchIntoFullscreen}}"
+                             icon="fullscreen"></paper-icon-button>
+        </core-toolbar>
+
+        <div id="content">
+          <uqlibrary-search></uqlibrary-search>
+
+          <div class="apps" horizontal justified layout>
+            <template repeat="{{apps}}">
+              <div flex class="app" on-tap="{{go}}" link="{{link}}">
+                <img src="{{image}}">
+                {{title}}
+              </div>
+            </template>
+          </div>
+        </div>
+
+      </core-header-panel>
+
+    </core-drawer-panel>
+
+  </template>
+
+  <script>
+    (function() {
+      Polymer('uqlibrary-home', {
+
+        created: function () {
+          this.apps = [
+            {
+              title: 'Bookings',
+              image: 'images/booking.png',
+              link: 'https://app.library.uq.edu.au/v1/booking'
+            },
+            {
+              title: 'Bookings',
+              image: 'images/booking.png',
+              link: 'https://app.library.uq.edu.au/v1/booking'
+            },
+            {
+              title: 'Bookings',
+              image: 'images/booking.png',
+              link: 'https://app.library.uq.edu.au/v1/booking'
+            },
+            {
+              title: 'Bookings',
+              image: 'images/booking.png',
+              link: 'https://app.library.uq.edu.au/v1/booking'
+            }
+          ];
+        },
+
+        ready: function() {
+        },
+
+        togglePanel: function () {
+          this.$.drawerPanel.togglePanel();
+        },
+
+        launchIntoFullscreen: function () {
+          var element = document.querySelector('uqlibrary-home');
+          if (element.requestFullscreen) {
+            element.requestFullscreen();
+          } else if (element.mozRequestFullScreen) {
+            element.mozRequestFullScreen();
+          } else if (element.webkitRequestFullscreen) {
+            element.webkitRequestFullscreen();
+          } else if (element.msRequestFullscreen) {
+            element.msRequestFullscreen();
+          }
+        },
+
+        go: function (e, _, el) {
+          document.location.href = el.attributes.link.value;
+        }
+
+      });
+    })();
+  </script>
+
+</polymer-element>

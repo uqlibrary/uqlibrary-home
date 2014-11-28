@@ -1,0 +1,62 @@
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 200;
+  src: url("Roboto-Light.woff") format("woff"); }
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: url("Roboto-Regular.woff") format("woff"); }
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: url("Roboto-Medium.woff") format("woff"); }
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  src: url("Roboto-Bold.woff") format("woff"); }
+:host,
+:host *,
+::content * {
+  box-sizing: border-box;
+  outline: none; }
+
+core-drawer-panel {
+  background-color: #fafafa; }
+
+#booking {
+  margin: 16px; }
+
+#drawer {
+  background-color: rgba(0, 0, 0, 0.87);
+  color: rgba(255, 255, 255, 0.87); }
+
+core-toolbar {
+  background-color: #49075E;
+  border-bottom: 1px solid #49075E;
+  color: rgba(255, 255, 255, 0.87); }
+
+core-menu {
+  margin: 0; }
+
+core-header-panel#drawer core-menu paper-item.core-selected {
+  color: rgba(255, 255, 255, 0.87);
+  background-color: rgba(0, 0, 0, 0.87); }
+
+.apps {
+  margin-top: 10px; }
+
+.app {
+  box-sizing: border-box;
+  margin: 6px;
+  min-height: 44px;
+  min-width: 44px;
+  font-size: 0.875em;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.54);
+  text-align: center; }
+
+/*# sourceMappingURL=uqlibrary-home.css.map */
