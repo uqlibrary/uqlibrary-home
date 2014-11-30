@@ -26,6 +26,12 @@ core-menu {
   margin: 0;
 }
 
+core-image {
+  width:44px;
+  height:44px;
+  background-color:$grey-A100;
+}
+
 core-header-panel {
  &#drawer {
    core-menu {

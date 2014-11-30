@@ -35,8 +35,8 @@
           <div class="apps" horizontal justified layout>
             <template repeat="{{apps}}">
               <div flex class="app" on-tap="{{go}}" link="{{link}}">
-                <img src="{{image}}">
-                {{title}}
+                <core-image src="{{image}}" sizing="cover" preload fade></core-image>
+                <br>{{title}}
               </div>
             </template>
           </div>
