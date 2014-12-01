@@ -25,8 +25,7 @@
           <paper-icon-button icon="menu"
                              on-tap="{{togglePanel}}"></paper-icon-button>
           <span flex id="toolbar-page-title">UQ Library</span>
-          <paper-icon-button on-click="{{launchIntoFullscreen}}"
-                             icon="fullscreen"></paper-icon-button>
+          <uqlibrary-notifications id="notifications" items="{{notifications}}"></uqlibrary-notifications>
         </core-toolbar>
 
         <div id="content">
@@ -75,6 +74,38 @@
               link: 'https://app.library.uq.edu.au/v1/booking'
             }
           ];
+
+
+          this.notifications = [
+            {
+              text: 'You have new booking',
+              image: 'images/notification.png',
+              link: 'http://localhost:7000/uqlibrary-booking',
+              isNew: true
+            },
+            {
+              text: 'You 2 loans overdue',
+              link: 'https://app.library.uq.edu.au/v1/booking',
+              isNew: true
+            },
+            {
+              text: 'New e-journal have been released',
+              link: 'https://app.library.uq.edu.au/v1/booking',
+              isNew: false
+            },
+            {
+              text: 'You have new booking',
+              image: 'images/notification.png',
+              link: 'http://localhost:7000/uqlibrary-booking',
+              isNew: false
+            },
+            {
+              text: 'You 2 loans overdue',
+              link: 'https://app.library.uq.edu.au/v1/booking',
+              isNew: false
+            }
+          ];
+
         },
 
         ready: function() {
