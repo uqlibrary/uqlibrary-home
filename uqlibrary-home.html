@@ -3,6 +3,7 @@
 <link rel="import" href="uqlibrary-loans-page.html">
 <link rel="import" href="uqlibrary-hours-page.html">
 <link rel="import" href="uqlibrary-availability-page.html">
+<link rel="import" href="uqlibrary-masquerade-page.html">
 
 <polymer-element name="uqlibrary-home" extends="uqlibrary-app">
 
@@ -69,8 +70,17 @@
                   <core-image src="images/booking.png" sizing="cover" preload fade></core-image>
                   <br>Computers
                 </div>
+                <br>
               </div>
 
+              <div class="apps" horizontal justified layout>
+                <template if="{{user.canMasquerade}}">
+                  <div flex class="app" on-tap="{{doTransition}}" id="showMasqueradePage">
+                    <core-image src="images/booking.png" sizing="cover" preload fade></core-image>
+                    <br>Masquerade
+                  </div>
+                </template>
+              </div>
             </section>
 
             <section id="loansPage">
@@ -83,6 +93,10 @@
 
             <section id="availabilityPage">
               <uqlibrary-availability-page id="availabilityPageEl"></uqlibrary-availability-page>
+            </section>
+
+            <section id="masqueradePage">
+              <uqlibrary-masquerade-page id="masqueradePageEl"></uqlibrary-masquerade-page>
             </section>
           </core-animated-pages>
 
@@ -149,6 +163,11 @@
               transition: 'slide-from-right',
               destination: 'hoursPage',
               action: 'showHoursPage'
+            },
+            showMasqueradePage: {
+              transition: 'slide-from-right',
+              destination: 'masqueradePage',
+              action: 'showMasqueradePage'
             }
           };
         },
@@ -219,6 +238,19 @@
           this.pageToolbar = {
             leftButton: {icon:'arrow-back'},
             title: 'Hours'
+          };
+        },
+
+        showMasqueradePage: function() {
+          this.pageTransitions.toolBarLeftButton = {
+            transition: 'slide-from-right',
+            destination: 'homePage',
+            action: 'showHomePage'
+          };
+
+          this.pageToolbar = {
+            leftButton: {icon:'arrow-back'},
+            title: 'Masquerade'
           };
         }
 

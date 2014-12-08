@@ -1,0 +1,30 @@
+<link rel="import" href="../uqlibrary-elements/0.5.1/lib/vulcanized.html">
+
+<polymer-element name="uqlibrary-masquerade-page" vertical layout>
+
+  <template>
+    <link rel="stylesheet" href="uqlibrary-home.css">
+
+    <div id="masquerade">
+      <paper-input-decorator label="Username">
+        <input is="core-input" value="{{user}}">
+      </paper-input-decorator>
+    </div>
+
+    <paper-button raised on-tap="{{go}}">Masquerade</paper-button>
+
+  </template>
+
+  <script>
+    (function() {
+      Polymer({
+        go: function (e) {
+          document.location.href = "https://www.library.uq.edu.au/uqlais/masquerade?" +
+            "user=" + this.user + "&" +
+            "return=" + window.btoa('https://app.library.uq.edu.au/v1/home');
+        }
+      });
+    })();
+  </script>
+
+</polymer-element>
