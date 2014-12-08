@@ -1,6 +1,7 @@
 <link rel="import" href="../uqlibrary-elements/0.5.1/lib/vulcanized.html">
 <link rel="import" href="uqlibrary-app.html">
 <link rel="import" href="uqlibrary-loans-page.html">
+<link rel="import" href="uqlibrary-hours-page.html">
 <link rel="import" href="uqlibrary-availability-page.html">
 
 <polymer-element name="uqlibrary-home" extends="uqlibrary-app">
@@ -60,6 +61,10 @@
                   <core-image src="images/booking.png" sizing="cover" preload fade></core-image>
                   <br>Loans
                 </div>
+                <div flex class="app" on-tap="{{doTransition}}" id="showHoursPage">
+                  <core-image src="images/booking.png" sizing="cover" preload fade></core-image>
+                  <br>Hours
+                </div>
                 <div flex class="app" on-tap="{{doTransition}}" id="showAvailabilityPage">
                   <core-image src="images/booking.png" sizing="cover" preload fade></core-image>
                   <br>Computers
@@ -70,6 +75,10 @@
 
             <section id="loansPage">
               <uqlibrary-loans-page id="loansPageEl"></uqlibrary-loans-page>
+            </section>
+
+            <section id="hoursPage">
+              <uqlibrary-hours-page id="hoursPageEl"></uqlibrary-hours-page>
             </section>
 
             <section id="availabilityPage">
@@ -135,6 +144,11 @@
               transition: 'slide-from-right',
               destination: 'availabilityPage',
               action: 'showAvailabilityPage'
+            },
+            showHoursPage: {
+              transition: 'slide-from-right',
+              destination: 'hoursPage',
+              action: 'showHoursPage'
             }
           };
         },
@@ -193,6 +207,20 @@
             title: 'Computers'
           };
           this.$.availabilityPageEl.show();
+        },
+
+        showHoursPage: function() {
+          this.pageTransitions.toolBarLeftButton = {
+            transition: 'slide-from-right',
+            destination: 'homePage',
+            action: 'showHomePage'
+          };
+
+          this.pageToolbar = {
+            leftButton: {icon:'arrow-back'},
+            title: 'Hours'
+          };
+          this.$.hoursPageEl.show();
         }
 
       });
