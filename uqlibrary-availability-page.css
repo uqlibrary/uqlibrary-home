@@ -33,7 +33,8 @@ paper-progress {
   padding: 16px; }
 
 #branchSelect {
-  padding: 7px; }
+  padding: 7px;
+  width: 100%; }
 
 paper-dropdown::shadow #scroller {
   width: 100% !important; }

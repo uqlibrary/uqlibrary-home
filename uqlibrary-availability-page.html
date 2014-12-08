@@ -10,7 +10,10 @@
     <div>
       <paper-shadow id="branchWrapper" class="card" z="1" horizontal layout center>
         <div id="branchSelect" relative on-tap="{{onTapSelectBranch}}">
-          {{selected.library}} <core-icon icon="{{$.branches.opened ? 'arrow-drop-up' : 'arrow-drop-down'}}"></core-icon>
+          <div horizontal layout center>
+            <div flex>{{selected.library}}</div>
+            <div><core-icon icon="{{$.branches.opened ? 'arrow-drop-up' : 'arrow-drop-down'}}"></core-icon></div>
+          </div>
         </div>
 
         <div>
@@ -37,10 +40,10 @@
     <div id="availability">
       <template repeat="{{selected.availability}}">
         <div class="availability-item">
-          <div class="totals">{{free}} free of {{total}} PCs</div>
+          <div class="totals">{{Available}} free of {{total}} PCs</div>
           <div class="title">{{title}}</div>
           <div class="free">
-            <paper-progress value="{{free}}">{{title}}</paper-progress>
+            <paper-progress value="{{percent}}">{{title}}</paper-progress>
           </div>
         </div>
       </template>
@@ -90,8 +93,8 @@
             for (var k in v.availability) {
               var a = v.availability[k];
               a.title = k;
-              a.total = a.Available + a.Occupied;
-              a.free = Math.floor((a.Available / a.total * 100));
+              a.total = (a.Available + a.Occupied);
+              a.percent = Math.floor((a.Available / a.total * 100));
               s.push(a);
             }
             v.availability = s;
