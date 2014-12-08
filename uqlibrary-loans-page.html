@@ -1,0 +1,93 @@
+<link rel="import" href="../uqlibrary-elements/0.5.1/lib/vulcanized.html">
+
+<polymer-element name="uqlibrary-loans-page">
+
+  <template>
+    <link rel="stylesheet" href="uqlibrary-loans-page.css">
+
+    <uqlibrary-api-account-loans id="loans"></uqlibrary-api-account-loans>
+
+    <p class="head">Checked out</p>
+
+    <template if="{{!loans.checkedOut.length}}"><p class="pad">No items currently checked out</p></template>
+    <template repeat="{{loans.checkedOut}}">
+      <div horizontal layout class="item">
+        <div class="message" flex>
+          <div class="primary">{{title}}</div>
+          <span class="secondary">Due: {{dueDate}}</span>
+        </div>
+      </div>
+    </template>
+
+    <p class="head">Holds</p>
+
+    <template if="{{!loans.holds.length}}"><p class="pad">No items currently on hold</p></template>
+    <template repeat="{{loans.holds}}">
+      <div horizontal layout class="item">
+        <div class="message" flex>
+          <div class="primary">{{title}}</div>
+          <span class="secondary">Placed on: {{datePlaced}}</span>
+        </div>
+      </div>
+    </template>
+
+    <p class="head">Fines</p>
+
+    <template if="{{!loans.fines.length}}"><p class="pad">No fines owing</p></template>
+    <template repeat="{{loans.fines}}">
+      <div horizontal layout class="item">
+        <div class="message" flex>
+          <div class="primary">{{title}} {{fineAmount}}</div>
+          <span class="secondary">Due on: {{dueDate}}</span><br>
+          <span class="secondary">Returned on: {{dateReturned}}</span>
+        </div>
+      </div>
+    </template>
+
+  </template>
+
+  <script>
+    (function() {
+      Polymer({
+
+        created: function () {
+          this.loans = {
+            checkedOut: [],
+            holds: [],
+            fines: []
+          };
+        },
+
+        ready: function () {
+        },
+
+        show: function () {
+          var that = this;
+          this.$.loans.addEventListener('uqlibrary-api-account-loans-loaded', function(e) {
+            var loans = e.detail;
+            if (! loans.hasOwnProperty('processed')) {
+              loans.checkedOut.forEach(function (v) {
+                var d = new Date(v.dueDate);
+                v.dueDate = d.getDate() + '/' + (d.getMonth() + 1) + '/' + d.getFullYear();
+              });
+              loans.holds.forEach(function (v) {
+                var d = new Date(v.datePlaced);
+                v.datePlaced = d.getDate() + '/' + (d.getMonth() + 1) + '/' + d.getFullYear();
+              });
+              loans.fines.forEach(function (v) {
+                var d = new Date(v.dueDate);
+                v.dueDate = d.getDate() + '/' + (d.getMonth() + 1) + '/' + d.getFullYear();
+                d = new Date(v.dateReturned);
+                v.dateReturned = d.getDate() + '/' + (d.getMonth() + 1) + '/' + d.getFullYear();
+              });
+              loans.processed = true;
+            }
+            that.loans = loans;
+          });
+          this.$.loans.get();
+        }
+      });
+    })();
+  </script>
+
+</polymer-element>

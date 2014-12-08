@@ -1,9 +1,14 @@
 <link rel="import" href="../uqlibrary-elements/0.5.1/lib/vulcanized.html">
+<link rel="import" href="uqlibrary-app.html">
+<link rel="import" href="uqlibrary-loans-page.html">
+<link rel="import" href="uqlibrary-availability-page.html">
 
-<polymer-element name="uqlibrary-home">
+<polymer-element name="uqlibrary-home" extends="uqlibrary-app">
 
   <template>
     <link rel="stylesheet" href="uqlibrary-home.css">
+
+    <uqlibrary-api-account id="account"></uqlibrary-api-account>
 
     <core-drawer-panel id="drawerPanel" responsiveWidth="9999px">
 
@@ -22,23 +27,56 @@
 
       <core-header-panel main id="main">
         <core-toolbar>
-          <paper-icon-button icon="menu"
-                             on-tap="{{togglePanel}}"></paper-icon-button>
-          <span flex id="toolbar-page-title">UQ Library</span>
+          <paper-icon-button
+            id="toolBarLeftButton"
+            hidden?="{{!pageToolbar.leftButton.icon}}"
+            icon="{{pageToolbar.leftButton.icon ? pageToolbar.leftButton.icon : ''}}"
+            on-tap="{{doTransition}}"></paper-icon-button>
+          <span flex id="toolbar-page-title">{{pageToolbar.title}}</span>
           <uqlibrary-notifications id="notifications" items="{{notifications}}"></uqlibrary-notifications>
+          <paper-icon-button
+            id="toolBarRightButton"
+            on-tap="{{doTransition}}"
+            hidden?="{{!pageToolbar.rightButton.icon}}"
+            icon="{{pageToolbar.rightButton.icon ? pageToolbar.rightButton.icon : ''}}"></paper-icon-button>
         </core-toolbar>
 
         <div id="content">
-          <uqlibrary-search></uqlibrary-search>
+          <core-animated-pages
+            id="pages"
+            transitions="{{transition}}"
+            on-core-animated-pages-transition-prepare="{{transitionPrepareHandler}}"
+            on-core-animated-pages-transition-end="{{transitionEndHandler}}">
 
-          <div class="apps" horizontal justified layout>
-            <template repeat="{{apps}}">
-              <div flex class="app" on-tap="{{go}}" link="{{link}}">
-                <core-image src="{{image}}" sizing="cover" preload fade></core-image>
-                <br>{{title}}
+            <section id="homePage">
+              <uqlibrary-search></uqlibrary-search>
+
+              <div class="apps" horizontal justified layout>
+                <div flex class="app" on-tap="{{go}}" link="https://app.library.uq.edu.au/v1/booking">
+                  <core-image src="images/booking.png" sizing="cover" preload fade></core-image>
+                  <br>Booking
+                </div>
+                <div flex class="app" on-tap="{{doTransition}}" id="showLoansPage">
+                  <core-image src="images/booking.png" sizing="cover" preload fade></core-image>
+                  <br>Loans
+                </div>
+                <div flex class="app" on-tap="{{doTransition}}" id="showAvailabilityPage">
+                  <core-image src="images/booking.png" sizing="cover" preload fade></core-image>
+                  <br>Computers
+                </div>
               </div>
-            </template>
-          </div>
+
+            </section>
+
+            <section id="loansPage">
+              <uqlibrary-loans-page id="loansPageEl"></uqlibrary-loans-page>
+            </section>
+
+            <section id="availabilityPage">
+              <uqlibrary-availability-page id="availabilityPageEl"></uqlibrary-availability-page>
+            </section>
+          </core-animated-pages>
+
         </div>
 
       </core-header-panel>
@@ -51,31 +89,13 @@
     (function() {
       Polymer('uqlibrary-home', {
 
+        appName: 'HOME',
+
+        transition: 'slide-from-right',
+        currentPage: 'homePage',
+        transitioning: false,
+
         created: function () {
-          this.apps = [
-            {
-              title: 'Bookings',
-              image: 'images/booking.png',
-              link: 'https://app.library.uq.edu.au/v1/booking'
-            },
-            {
-              title: 'Bookings',
-              image: 'images/booking.png',
-              link: 'https://app.library.uq.edu.au/v1/booking'
-            },
-            {
-              title: 'Bookings',
-              image: 'images/booking.png',
-              link: 'https://app.library.uq.edu.au/v1/booking'
-            },
-            {
-              title: 'Bookings',
-              image: 'images/booking.png',
-              link: 'https://app.library.uq.edu.au/v1/booking'
-            }
-          ];
-
-
           this.notifications = [
             {
               text: 'You have new booking',
@@ -105,31 +125,74 @@
               isNew: false
             }
           ];
-
+          this.pageTransitions = {
+            showLoansPage: {
+              transition: 'slide-from-right',
+              destination: 'loansPage',
+              action: 'showLoansPage'
+            },
+            showAvailabilityPage: {
+              transition: 'slide-from-right',
+              destination: 'availabilityPage',
+              action: 'showAvailabilityPage'
+            }
+          };
         },
 
         ready: function() {
-        },
-
-        togglePanel: function () {
-          this.$.drawerPanel.togglePanel();
-        },
-
-        launchIntoFullscreen: function () {
-          var element = document.querySelector('uqlibrary-home');
-          if (element.requestFullscreen) {
-            element.requestFullscreen();
-          } else if (element.mozRequestFullScreen) {
-            element.mozRequestFullScreen();
-          } else if (element.webkitRequestFullscreen) {
-            element.webkitRequestFullscreen();
-          } else if (element.msRequestFullscreen) {
-            element.msRequestFullscreen();
-          }
+          var that = this;
+          this.$.account.addEventListener('uqlibrary-api-account-loaded', function(e) {
+            if (e.detail.hasSession) {
+              that.user = e.detail;
+            } else {
+              that.$.account.login('https://app.library.uq.edu.au/v1/home');
+            }
+          });
+          this.$.account.get();
+          this.showHomePage();
         },
 
         go: function (e, _, el) {
           document.location.href = el.attributes.link.value;
+        },
+
+        showHomePage: function() {
+          this.pageTransitions.toolBarLeftButton = {
+            action: 'togglePanel'
+          };
+
+          this.pageToolbar = {
+            leftButton: {icon:'menu'},
+            title: 'UQ Library'
+          };
+        },
+
+        showLoansPage: function() {
+          this.pageTransitions.toolBarLeftButton = {
+            transition: 'slide-from-right',
+            destination: 'homePage',
+            action: 'showHomePage'
+          };
+
+          this.pageToolbar = {
+            leftButton: {icon:'arrow-back'},
+            title: 'Loans'
+          };
+          this.$.loansPageEl.show();
+        },
+
+        showAvailabilityPage: function() {
+          this.pageTransitions.toolBarLeftButton = {
+            transition: 'slide-from-right',
+            destination: 'homePage',
+            action: 'showHomePage'
+          };
+
+          this.pageToolbar = {
+            leftButton: {icon:'arrow-back'},
+            title: 'Computers'
+          };
+          this.$.availabilityPageEl.show();
         }
 
       });

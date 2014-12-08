@@ -1,0 +1,55 @@
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 200;
+  src: url("Roboto-Light.woff") format("woff"); }
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: url("Roboto-Regular.woff") format("woff"); }
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: url("Roboto-Medium.woff") format("woff"); }
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  src: url("Roboto-Bold.woff") format("woff"); }
+:host,
+:host *,
+::content * {
+  box-sizing: border-box;
+  outline: none; }
+
+paper-progress {
+  height: 20px;
+  width: 100%; }
+
+#availability {
+  margin-top: 6px;
+  padding: 16px; }
+
+#branchSelect {
+  padding: 7px; }
+
+paper-dropdown::shadow #scroller {
+  width: 100% !important; }
+
+.card {
+  background: white;
+  box-sizing: border-box;
+  padding: 6px; }
+
+.availability-item {
+  border-bottom: 1px solid #F5F5F5;
+  padding: 4px;
+  line-height: 1.2; }
+  .availability-item .totals {
+    float: right;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.54); }
+
+/*# sourceMappingURL=uqlibrary-availability-page.css.map */

@@ -1,0 +1,40 @@
+@import "../uqlibrary-elements/resources/theme/element";
+
+:host {
+}
+
+paper-progress {
+  height: 20px;
+  width: 100%;
+}
+
+#availability {
+  margin-top: 6px;
+  padding: 16px;
+}
+
+#branchSelect {
+  padding: 7px;
+}
+
+paper-dropdown::shadow #scroller {
+  width: 100% !important;
+}
+
+.card {
+  background: white;
+  box-sizing: border-box;
+  padding: 6px;
+}
+
+.availability-item {
+  border-bottom: 1px solid $grey-A100;
+  padding: 4px;
+  line-height: 1.2;
+
+  .totals {
+    float: right;
+    font-size: 14px;
+    color: $secondary-text;
+  }
+}

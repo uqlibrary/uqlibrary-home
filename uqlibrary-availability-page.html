@@ -1,0 +1,106 @@
+<link rel="import" href="../uqlibrary-elements/0.5.1/lib/vulcanized.html">
+
+<polymer-element name="uqlibrary-availability-page" vertical layout>
+
+  <template>
+    <link rel="stylesheet" href="uqlibrary-availability-page.css">
+
+    <uqlibrary-api-computer-availability id="computers"></uqlibrary-api-computer-availability>
+
+    <div>
+      <paper-shadow id="branchWrapper" class="card" z="1" horizontal layout center>
+        <div id="branchSelect" relative on-tap="{{onTapSelectBranch}}">
+          {{selected.library}} <core-icon icon="{{$.branches.opened ? 'arrow-drop-up' : 'arrow-drop-down'}}"></core-icon>
+        </div>
+
+        <div>
+          <paper-dropdown
+            id="branches"
+            class="no-padding"
+            relatedTarget="{{$.branchSelect}}"
+            autoFocusDisabled="true">
+            <core-selector
+              id="branchSelector"
+              selected="{{branch}}"
+              selectedAttribute="">
+              <template repeat="{{computer, idx in computers}}">
+                <paper-item class="{{(idx+1) === computers.length ? 'last' : ''}}">
+                  <div class="truncate">{{computer.library}}</div>
+                </paper-item>
+              </template>
+            </core-selector>
+          </paper-dropdown>
+        </div>
+      </paper-shadow>
+    </div>
+
+    <div id="availability">
+      <template repeat="{{selected.availability}}">
+        <div class="availability-item">
+          <div class="totals">{{free}} free of {{total}} PCs</div>
+          <div class="title">{{title}}</div>
+          <div class="free">
+            <paper-progress value="{{free}}">{{title}}</paper-progress>
+          </div>
+        </div>
+      </template>
+    </div>
+
+  </template>
+
+  <script>
+    (function() {
+      Polymer({
+
+        branch: 0,
+
+        created: function () {
+          this.selected = {};
+        },
+
+        ready: function () {
+        },
+
+        show: function () {
+          var that = this;
+          this.$.computers.addEventListener('uqlibrary-api-computer-availability-loaded', function(e) {
+            if (e.detail.hasOwnProperty('processed')) {
+              that.computers = e.detail;
+            } else {
+              that.computers = that.parseComputers(e.detail);
+            }
+            that.selected = that.computers[that.branch];
+          });
+          this.$.computers.get();
+        },
+
+        onTapSelectBranch: function () {
+          this.$.branches.opened = true;
+        },
+
+        branchChanged: function () {
+          this.$.branches.opened = false;
+          this.selected = this.computers[this.branch];
+        },
+
+        parseComputers: function (computers) {
+          computers.forEach(function (v) {
+            v.library = v.library.replace('&amp;', '&');
+            var s = [];
+            for (var k in v.availability) {
+              var a = v.availability[k];
+              a.title = k;
+              a.total = a.Available + a.Occupied;
+              a.free = Math.floor((a.Available / a.total * 100));
+              s.push(a);
+            }
+            v.availability = s;
+          });
+          computers.processed = true;
+          return computers;
+        }
+      });
+    })();
+  </script>
+
+</polymer-element>
