@@ -82,10 +82,12 @@
                   </div>
                 </template>
 
-                <div flex class="app" on-tap="{{doTransition}}" id="showCoursesPage">
-                  <core-image src="images/booking.png" sizing="cover" preload fade></core-image>
-                  <br>Courses
-                </div>
+                <template if="{{user.classes.length}}">
+                  <div flex class="app" on-tap="{{doTransition}}" id="showCoursesPage">
+                    <core-image src="images/booking.png" sizing="cover" preload fade></core-image>
+                    <br>Courses
+                  </div>
+                </template>
               </div>
             </section>
 
