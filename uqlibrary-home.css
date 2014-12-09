@@ -34,8 +34,7 @@ core-drawer-panel {
   margin: 16px; }
 
 #drawer {
-  background-color: rgba(0, 0, 0, 0.87);
-  color: rgba(255, 255, 255, 0.87); }
+  background-color: #ffffff; }
 
 core-toolbar {
   background-color: #49075E;
