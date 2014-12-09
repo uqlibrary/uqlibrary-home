@@ -49,10 +49,6 @@ core-image {
   height: 44px;
   background-color: #F5F5F5; }
 
-core-header-panel#drawer core-menu paper-item.core-selected {
-  color: rgba(255, 255, 255, 0.87);
-  background-color: rgba(0, 0, 0, 0.87); }
-
 .apps {
   margin-top: 10px; }
 

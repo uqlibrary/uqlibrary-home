@@ -35,19 +35,6 @@ core-image {
   background-color:$grey-A100;
 }
 
-core-header-panel {
- &#drawer {
-   core-menu {
-     paper-item {
-       &.core-selected {
-         color: $text-inverse;
-         background-color: $text;
-       }
-     }
-   }
- }
-}
-
 .apps {
   margin-top: 10px;
 }
