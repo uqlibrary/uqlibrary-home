@@ -1,0 +1,50 @@
+<link rel="import" href="../uqlibrary-elements/0.5.1/lib/vulcanized.html">
+
+<polymer-element name="uqlibrary-courses-page" attributes="user" vertical layout>
+
+  <template>
+    <link rel="stylesheet" href="uqlibrary-courses-page.css">
+
+    <template repeat="{{user.classes}}">
+
+      <div class="item">
+
+        <div class="code">{{SUBJECT}}{{CATALOG_NBR}}</div>
+        <div class="descr">{{DESCR}}</div>
+
+        <div horizontal layout reverse>
+          <div>
+            <paper-button on-tap="{{onTapReadingList}}">Reading list</paper-button>
+          </div>
+          <div>
+            <paper-button on-tap="{{onTapExamPaper}}">Exam papers</paper-button>
+          </div>
+        </div>
+
+      </div>
+
+    </template>
+
+  </template>
+
+  <script>
+    (function() {
+      Polymer({
+        onTapReadingList: function (event, detail, sender) {
+          var item = sender.templateInstance.model;
+          this.go('http://www.library.uq.edu.au/lr/' + item.SUBJECT + item.CATALOG_NBR);
+        },
+
+        onTapExamPaper: function (event, detail, sender) {
+          var item = sender.templateInstance.model;
+          this.go('http://www.library.uq.edu.au/exams/papers.php?stub=' + item.SUBJECT + item.CATALOG_NBR);
+        },
+
+        go: function (url) {
+          document.location.href = url;
+        }
+      });
+    })();
+  </script>
+
+</polymer-element>

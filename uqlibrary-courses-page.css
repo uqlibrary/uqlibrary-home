@@ -1,0 +1,49 @@
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 200;
+  src: url("Roboto-Light.woff") format("woff"); }
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: url("Roboto-Regular.woff") format("woff"); }
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: url("Roboto-Medium.woff") format("woff"); }
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  src: url("Roboto-Bold.woff") format("woff"); }
+:host,
+:host *,
+::content * {
+  box-sizing: border-box;
+  outline: none; }
+
+.code {
+  font-size: 16px;
+  display: block;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.54);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  line-height: 1.2; }
+
+.item {
+  padding: 16px 16px 0px;
+  background: white;
+  box-sizing: border-box;
+  border-bottom: 1px solid #F5F5F5;
+  font-size: 14px; }
+
+paper-button {
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.54);
+  font-weight: bold; }
+
+/*# sourceMappingURL=uqlibrary-courses-page.css.map */

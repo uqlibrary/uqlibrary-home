@@ -4,6 +4,7 @@
 <link rel="import" href="uqlibrary-hours-page.html">
 <link rel="import" href="uqlibrary-availability-page.html">
 <link rel="import" href="uqlibrary-masquerade-page.html">
+<link rel="import" href="uqlibrary-courses-page.html">
 
 <polymer-element name="uqlibrary-home" extends="uqlibrary-app">
 
@@ -80,6 +81,11 @@
                     <br>Masquerade
                   </div>
                 </template>
+
+                <div flex class="app" on-tap="{{doTransition}}" id="showCoursesPage">
+                  <core-image src="images/booking.png" sizing="cover" preload fade></core-image>
+                  <br>Courses
+                </div>
               </div>
             </section>
 
@@ -97,6 +103,10 @@
 
             <section id="masqueradePage">
               <uqlibrary-masquerade-page id="masqueradePageEl"></uqlibrary-masquerade-page>
+            </section>
+
+            <section id="coursesPage">
+              <uqlibrary-courses-page id="coursesPageEl" user="{{user}}"></uqlibrary-courses-page>
             </section>
           </core-animated-pages>
 
@@ -168,6 +178,11 @@
               transition: 'slide-from-right',
               destination: 'masqueradePage',
               action: 'showMasqueradePage'
+            },
+            showCoursesPage: {
+              transition: 'slide-from-right',
+              destination: 'coursesPage',
+              action: 'showCoursesPage'
             }
           };
         },
@@ -251,6 +266,19 @@
           this.pageToolbar = {
             leftButton: {icon:'arrow-back'},
             title: 'Masquerade'
+          };
+        },
+
+        showCoursesPage: function() {
+          this.pageTransitions.toolBarLeftButton = {
+            transition: 'slide-from-right',
+            destination: 'homePage',
+            action: 'showHomePage'
+          };
+
+          this.pageToolbar = {
+            leftButton: {icon:'arrow-back'},
+            title: 'Courses'
           };
         }
 
