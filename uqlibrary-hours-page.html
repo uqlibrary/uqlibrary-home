@@ -1,13 +1,30 @@
 <link rel="import" href="../uqlibrary-elements/0.5.1/lib/vulcanized.html">
 
-<polymer-element name="uqlibrary-hours-page" vertical layout noscript>
+<polymer-element name="uqlibrary-hours-page" vertical layout>
 
   <template>
     <iframe
-      src="https://www.library.uq.edu.au/mobile/hours_iframe.html"
+      src="{{src}}"
       width="400"
       height="600"></iframe>
 
   </template>
+
+  <script>
+    (function() {
+      Polymer({
+
+        created: function () {
+        },
+
+        ready: function () {
+        },
+
+        show: function () {
+          this.src = 'https://www.library.uq.edu.au/mobile/hours_iframe.html';
+        }
+      });
+    })();
+  </script>
 
 </polymer-element>
