@@ -10,7 +10,9 @@
     "/tests/"
   ],
   "dependencies": {
-    "uqlibrary-elements": "uqlibrary/uqlibrary-elements#master"
+    "uqlibrary-elements": "uqlibrary/uqlibrary-elements#master",
+    "jquery": "~1.11.1",
+    "PgwBrowser" : "Pagawa/PgwBrowser#1.2"
   },
   "devDependencies": {
     "web-component-tester": "Polymer/web-component-tester#1.6.1"
