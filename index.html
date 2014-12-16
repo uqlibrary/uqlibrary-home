@@ -18,8 +18,8 @@
       if (!isIE() || isIE () > 9) {
         document.write('<script src="../uqlibrary-elements/0.5.1/webcomponentsjs/webcomponents.js"><\/script>');
       }
-      document.write('<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"><\/script>');
-      document.write('<script type="text/javascript" src="bower_components/PgwBrowser/pgwbrowser.min.js"><\/script>');
+//      document.write('<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"><\/script>');
+//      document.write('<script type="text/javascript" src="bower_components/PgwBrowser/pgwbrowser.min.js"><\/script>');
     }
   </script>
   <link rel="manifest" href="manifest.json">
@@ -63,35 +63,35 @@
       }());
     }
     catch(e) {
-      if (window.jQuery) {
-        $(document).ready(function () {
-          var pgwBrowser = $.pgwBrowser();
-          var e = document.createElement("div");
-          e.id = "browserDetails";
-          switch (pgwBrowser.os.group) {
-            case 'iOS':
-              if (pgwBrowser.os.majorVersion < 6) {
-                e.innerHTML = '<br \/><br \/>You are currently using an unsupported version of Safari bundled with Apple iOS version ' + pgwBrowser.os.fullVersion + '. We can only support Safari in Apple iOS version 6 and above.'
-              }
-              break;
-            case 'Windows Phone':
-              if (pgwBrowser.os.majorVersion < 8 && pgwBrowser.os.minorVersion < 1) {
-                e.innerHTML = '<br \/><br \/>You are currently using a version of Windows Phone older than version 8.1 (version ' + pgwBrowser.os.fullVersion + '). We can only support version 8.1 and above.'
-              }
-              break;
-            case 'Android':
-              if (pgwBrowser.os.majorVersion < 4 && pgwBrowser.os.minorVersion < 4) {
-                e.innerHTML = '<br \/><br \/>Since you are using Android (version ' + pgwBrowser.os.fullVersion + ') you can upgrade from the old Android Browser to <a href=\'https:\/\/play.google.com\/store\/apps\/details?id=com.android.chrome&hl=en\'>Google Chrome for Android<\/a> to get a faster, and compatible web experience.';
-              }
-              break;
-          }
-          document.body.appendChild(e);
-          var o = document.createElement("div");
-          o.id = "browserDetailsOld";
-          o.innerHTML = "<br \/><br \/>You can still use <a href=\'https:\/\/www.library.uq.edu.au\/mylibrary\'>the old version of MyLibrary<\/a>.";
-          document.body.appendChild(o);
-        });
-      }
+//      if (window.jQuery) {
+//        $(document).ready(function () {
+//          var pgwBrowser = $.pgwBrowser();
+//          var e = document.createElement("div");
+//          e.id = "browserDetails";
+//          switch (pgwBrowser.os.group) {
+//            case 'iOS':
+//              if (pgwBrowser.os.majorVersion < 6) {
+//                e.innerHTML = '<br \/><br \/>You are currently using an unsupported version of Safari bundled with Apple iOS version ' + pgwBrowser.os.fullVersion + '. We can only support Safari in Apple iOS version 6 and above.'
+//              }
+//              break;
+//            case 'Windows Phone':
+//              if (pgwBrowser.os.majorVersion < 8 && pgwBrowser.os.minorVersion < 1) {
+//                e.innerHTML = '<br \/><br \/>You are currently using a version of Windows Phone older than version 8.1 (version ' + pgwBrowser.os.fullVersion + '). We can only support version 8.1 and above.'
+//              }
+//              break;
+//            case 'Android':
+//              if (pgwBrowser.os.majorVersion < 4 && pgwBrowser.os.minorVersion < 4) {
+//                e.innerHTML = '<br \/><br \/>Since you are using Android (version ' + pgwBrowser.os.fullVersion + ') you can upgrade from the old Android Browser to <a href=\'https:\/\/play.google.com\/store\/apps\/details?id=com.android.chrome&hl=en\'>Google Chrome for Android<\/a> to get a faster, and compatible web experience.';
+//              }
+//              break;
+//          }
+//          document.body.appendChild(e);
+//          var o = document.createElement("div");
+//          o.id = "browserDetailsOld";
+//          o.innerHTML = "<br \/><br \/>You can still use <a href=\'https:\/\/www.library.uq.edu.au\/mylibrary\'>the old version of MyLibrary<\/a>.";
+//          document.body.appendChild(o);
+//        });
+//      }
       if (window.addEventListener) {
         window.addEventListener("onload", $buo_f, false);
       } else if (window.attachEvent) {
