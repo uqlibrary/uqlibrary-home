@@ -274,6 +274,15 @@
             leftButton: {icon:'arrow-back'},
             title: 'Courses'
           };
+        },
+
+        transitionPrepareHandler: function() {
+          this.transitioning = true;
+          this.fire('core-signal', {name: "transitioning-change", data: {transitioning: this.transitioning}});
+        },
+        transitionEndHandler: function() {
+          this.transitioning = false;
+          this.fire('core-signal', {name: "transitioning-change", data: {transitioning: this.transitioning}});
         }
 
       });
