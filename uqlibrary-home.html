@@ -47,19 +47,19 @@
 
               <div class="apps" horizontal justified layout>
                 <div flex class="app" on-tap="{{go}}" link="https://app.library.uq.edu.au/v1/booking">
-                  <core-image src="images/booking.png" sizing="cover" preload fade></core-image>
+                  <core-image src="images/booking.svg" sizing="cover" preload fade></core-image>
                   <br>Booking
                 </div>
                 <div flex class="app" on-tap="{{doTransition}}" id="showLoansPage">
-                  <core-image src="images/borrowing.png" sizing="cover" preload fade></core-image>
+                  <core-image src="images/borrowing.svg" sizing="cover" preload fade></core-image>
                   <br>Borrowing
                 </div>
                 <div flex class="app" on-tap="{{doTransition}}" id="showHoursPage">
-                  <core-image src="images/hours.png" sizing="cover" preload fade></core-image>
+                  <core-image src="images/hours.svg" sizing="cover" preload fade></core-image>
                   <br>Hours
                 </div>
                 <div flex class="app" on-tap="{{doTransition}}" id="showAvailabilityPage">
-                  <core-image src="images/computers.png" sizing="cover" preload fade></core-image>
+                  <core-image src="images/computers.svg" sizing="cover" preload fade></core-image>
                   <br>Computers
                 </div>
                 <br>
@@ -68,14 +68,14 @@
               <div class="apps" horizontal justified layout>
                 <template if="{{user.canMasquerade}}">
                   <div flex class="app" on-tap="{{doTransition}}" id="showMasqueradePage">
-                    <core-image src="images/masquerade.png" sizing="cover" preload fade></core-image>
+                    <core-image src="images/masquerade.svg" sizing="cover" preload fade></core-image>
                     <br>Masquerade
                   </div>
                 </template>
 
                 <template if="{{user.classes.length}}">
                   <div flex class="app" on-tap="{{doTransition}}" id="showCoursesPage">
-                    <core-image src="images/learning.png" sizing="cover" preload fade></core-image>
+                    <core-image src="images/learning.svg" sizing="cover" preload fade></core-image>
                     <br>Courses
                   </div>
                 </template>
@@ -274,9 +274,6 @@
             leftButton: {icon:'arrow-back'},
             title: 'Courses'
           };
-
-          this.$.coursesPageEl.show();
-
         },
 
         transitionPrepareHandler: function() {
