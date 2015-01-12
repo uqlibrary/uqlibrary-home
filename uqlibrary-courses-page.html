@@ -3,7 +3,7 @@
 <polymer-element name="uqlibrary-courses-page" attributes="user" vertical layout>
 
   <template>
-    <uqlibrary-courses courses="{{user.classes}}"></uqlibrary-courses>
+    <uqlibrary-courses id="coursesEl" courses="{{user.classes}}"></uqlibrary-courses>
 
   </template>
 
@@ -11,6 +11,10 @@
     (function() {
       Polymer({
         ready: function(){
+        },
+
+        show: function() {
+          this.$.coursesEl.get();
         }
       });
     })();
