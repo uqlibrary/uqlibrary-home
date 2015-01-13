@@ -10,11 +10,27 @@
   <script>
     (function() {
       Polymer({
+        infoLoaded: false,
         ready: function(){
+          var that = this;
+          this.$.coursesEl.addEventListener('uqlibrary-courses-loaded', function(){
+            that.infoLoaded = true;
+          });
+
+          //this.$.coursesEl.termExtendWeeksRange = {before: 5, after: 2}
         },
 
+
+
         show: function() {
-          this.$.coursesEl.get();
+          if(this.infoLoaded) {
+            this.$.coursesEl.get();
+          }
+          else {
+            this.$.coursesEl.addEventListener('uqlibrary-courses-loaded', function(){
+              this.$.coursesEl.get();
+            });
+          }
         }
       });
     })();
