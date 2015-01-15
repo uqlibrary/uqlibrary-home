@@ -210,3 +210,11 @@ core-image {
   font-weight: 500;
   color: rgba(0, 0, 0, 0.54);
   text-align: center; }
+
+.slideUp {
+  -webkit-transform: translate(0,-6em);
+  -moz-transform: translate(0,-6em);
+  -o-transform: translate(0,-6em);
+  -ms-transform: translate(0,-6em);
+  transform: translate(0,-6em);
+}

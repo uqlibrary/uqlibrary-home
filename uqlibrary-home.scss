@@ -54,3 +54,10 @@ core-image {
   text-align: center;
 }
 
+.slideUp {
+  -webkit-transform: translate(0,-6em);
+  -moz-transform: translate(0,-6em);
+  -o-transform: translate(0,-6em);
+  -ms-transform: translate(0,-6em);
+  transform: translate(0,-6em);
+}
