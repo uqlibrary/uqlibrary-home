@@ -173,6 +173,12 @@ h4.inverse {
 core-drawer-panel {
   background-color: #fafafa; }
 
+@-moz-document url-prefix() {
+  core-header-panel {
+    background-color: #fafafa;
+  }
+}
+
 #masquerade {
   margin: 16px; }
 
