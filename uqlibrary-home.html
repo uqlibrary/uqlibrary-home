@@ -67,14 +67,14 @@
 
               <div class="apps" horizontal justified layout>
                 <template if="{{user.canMasquerade}}">
-                  <div flex class="app" on-tap="{{doTransition}}" id="showMasqueradePage">
+                  <div class="app" on-tap="{{doTransition}}" id="showMasqueradePage">
                     <core-image src="images/masquerade.svg" sizing="cover" preload fade></core-image>
                     <br>Masquerade
                   </div>
                 </template>
 
                 <template if="{{user.classes.length}}">
-                  <div flex class="app" on-tap="{{doTransition}}" id="showCoursesPage">
+                  <div class="app" on-tap="{{doTransition}}" id="showCoursesPage">
                     <core-image src="images/learning.svg" sizing="cover" preload fade></core-image>
                     <br>Courses
                   </div>
