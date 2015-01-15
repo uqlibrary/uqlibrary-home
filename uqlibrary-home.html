@@ -27,9 +27,9 @@
             icon="{{pageToolbar.leftButton.icon ? pageToolbar.leftButton.icon : ''}}"
             on-tap="{{doTransition}}"></paper-icon-button>
           <span flex id="toolbar-page-title">{{pageToolbar.title}}</span>
-          <!--<paper-icon-button-->
-                  <!--icon="search"-->
-                  <!--on-tap="{{slideToggle}}"></paper-icon-button>-->
+          <paper-icon-button
+                  icon="search"
+                  on-tap="{{slideToggle}}"></paper-icon-button>
           <!--<uqlibrary-notifications id="notifications" items="{{notifications}}"></uqlibrary-notifications>-->
           <paper-icon-button
             id="toolBarRightButton"
@@ -194,7 +194,6 @@
           });
           this.$.account.get();
           this.showHomePage();
-          this.$.('#searchWrapper').addClass('slideUp');
         },
 
         go: function (e, _, el) {

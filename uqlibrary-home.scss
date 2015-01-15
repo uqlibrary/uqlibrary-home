@@ -9,7 +9,7 @@ core-drawer-panel {
 
 @-moz-document url-prefix() {
   core-header-panel {
-    background-color: #fafafa !important;
+    background-color: #fafafa;
   }
 }
 
@@ -62,12 +62,4 @@ core-image {
   -o-transform: translate(0,-6em);
   -ms-transform: translate(0,-6em);
   transform: translate(0,-6em);
-}
-
-.slideDown {
-  -webkit-transform: translate(0,0);
-  -moz-transform: translate(0,0);
-  -o-transform: translate(0,0);
-  -ms-transform: translate(0,0);
-  transform: translate(0,0);
 }
