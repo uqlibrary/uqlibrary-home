@@ -193,7 +193,7 @@ core-menu {
 core-image {
   width: 44px;
   height: 44px;
-  background-color: whitesmoke; }
+  background-color: transparent; }
 
 .apps {
   margin-top: 10px; }
