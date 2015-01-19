@@ -48,7 +48,7 @@
             <section id="homePage">
               <uqlibrary-search></uqlibrary-search>
 
-              <div class="apps" horizontal justified layout>
+              <div class="apps" horizontal around-justified layout>
                 <div flex class="app" on-tap="{{go}}" link="https://app.library.uq.edu.au/v1/booking">
                   <core-image src="images/booking.svg" sizing="cover" preload fade></core-image>
                   <br>Booking
@@ -68,7 +68,7 @@
                 <br>
               </div>
 
-              <div class="apps" horizontal justified layout>
+              <div class="apps" horizontal around-justified layout>
                 <template if="{{user.canMasquerade}}">
                   <div class="app" on-tap="{{doTransition}}" id="showMasqueradePage">
                     <core-image src="images/masquerade.svg" sizing="cover" preload fade></core-image>
