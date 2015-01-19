@@ -26,7 +26,7 @@
             hidden?="{{!pageToolbar.leftButton.icon}}"
             icon="{{pageToolbar.leftButton.icon ? pageToolbar.leftButton.icon : ''}}"
             on-tap="{{doTransition}}"></paper-icon-button>
-          <span flex id="toolbar-page-title">{{pageToolbar.title}}</span>
+          <span flex id="toolbar-page-title" on-tap="{{doTransition}}">{{pageToolbar.title}}</span>
           <!--<paper-icon-button-->
                   <!--icon="search"-->
                   <!--on-tap="{{slideToggle}}"></paper-icon-button>-->
