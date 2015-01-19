@@ -45,8 +45,10 @@
             on-core-animated-pages-transition-prepare="{{transitionPrepareHandler}}"
             on-core-animated-pages-transition-end="{{transitionEndHandler}}">
 
-            <section id="homePage" horizontal center-justified layout>
-              <uqlibrary-search></uqlibrary-search>
+            <section id="homePage">
+              <div horizontal center-justified layout>
+                <uqlibrary-search></uqlibrary-search>
+              </div>
 
               <div class="apps" horizontal around-justified layout>
                 <div flex class="app" on-tap="{{go}}" link="https://app.library.uq.edu.au/v1/booking">
