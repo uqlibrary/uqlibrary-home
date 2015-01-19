@@ -215,3 +215,7 @@ core-image {
   -ms-transform: translate(0,-6em);
   transform: translate(0,-6em);
 }
+
+#homePage {
+  text-align: -moz-center;
+}
