@@ -3,12 +3,8 @@
 <svg width="100px" height="100px" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;">
     <g>
         <g id="Layer1">
-            <g>
-                <path d="M50,86C30.12,86 14,69.8799 14,50C14,30.1099 30.12,14 50,14C69.88,14 86,30.1099 86,50C86,69.8799 69.88,86 50,86ZM50,4C24.6,4 4,24.5898 4,50C4,75.3999 24.6,96 50,96C75.4,96 96,75.3999 96,50C96,24.5898 75.4,4 50,4Z" style="fill:rgb(73,13,97);fill-rule:nonzero;"/>
-            </g>
-            <g>
-                <path d="M53.5,24L46.5,24L46.5,51.45L63.53,68.47L68.48,63.52L53.5,48.55L53.5,24Z" style="fill:rgb(73,13,97);fill-rule:nonzero;"/>
-            </g>
+            <path d="M50,86C30.12,86 14,69.8799 14,50C14,30.1099 30.12,14 50,14C69.88,14 86,30.1099 86,50C86,69.8799 69.88,86 50,86ZM50,4C24.6,4 4,24.5898 4,50C4,75.3999 24.6,96 50,96C75.4,96 96,75.3999 96,50C96,24.5898 75.4,4 50,4Z" style="fill:rgb(123,12,157);fill-rule:nonzero;"/>
+            <path d="M53.5,24L46.5,24L46.5,51.45L63.53,68.47L68.48,63.52L53.5,48.55Z" style="fill:rgb(123,12,157);fill-rule:nonzero;"/>
         </g>
     </g>
 </svg>

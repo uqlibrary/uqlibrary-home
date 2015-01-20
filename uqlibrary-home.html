@@ -50,32 +50,42 @@
 
               <div class="apps" horizontal around-justified layout>
                 <div flex class="app" on-tap="{{go}}" link="https://app.library.uq.edu.au/v1/booking">
-                  <core-image src="images/booking.svg" sizing="cover" preload fade></core-image>
+                  <core-image src="images/booking.svg" sizing="cover" preload fade class="home-icon"></core-image>
                   <br>Booking
                 </div>
                 <div flex class="app" on-tap="{{doTransition}}" id="showLoansPage">
-                  <core-image src="images/borrowing.svg" sizing="cover" preload fade></core-image>
+                  <core-image src="images/borrowing.svg" sizing="cover" preload fade class="home-icon"></core-image>
                   <br>Borrowing
                 </div>
-                <div flex class="app" on-tap="{{doTransition}}" id="showHoursPage">
-                  <core-image src="images/hours.svg" sizing="cover" preload fade></core-image>
-                  <br>Hours
-                </div>
                 <div flex class="app" on-tap="{{doTransition}}" id="showAvailabilityPage">
-                  <core-image src="images/computers.svg" sizing="cover" preload fade></core-image>
+                  <core-image src="images/computers.svg" sizing="cover" preload fade class="home-icon"></core-image>
                   <br>Computers
+                </div>
+                <div class="app" on-tap="{{doTransition}}" id="showCoursesPage">
+                  <core-image src="images/learning.svg" sizing="cover" preload fade class="home-icon"></core-image>
+                  <br>Courses
                 </div>
                 <br>
               </div>
 
               <div class="apps" horizontal around-justified layout>
+                <div flex class="app" on-tap="{{doTransition}}" id="showHoursPage">
+                  <core-image src="images/hours.svg" sizing="cover" preload fade class="home-icon"></core-image>
+                  <br>Hours
+                </div>
                 <template if="{{user.canMasquerade}}">
                   <div class="app" on-tap="{{doTransition}}" id="showMasqueradePage">
-                    <core-image src="images/masquerade.svg" sizing="cover" preload fade></core-image>
+                    <core-image src="images/masquerade.svg" sizing="cover" preload fade class="home-icon"></core-image>
                     <br>Masquerade
                   </div>
                 </template>
 
+                <!--<template if="{{user.classes.length}}">-->
+                  <!--<div class="app" on-tap="{{doTransition}}" id="showCoursesPage">-->
+                    <!--<core-image src="images/learning.svg" sizing="cover" preload fade class="home-icon"></core-image>-->
+                    <!--<br>Courses-->
+                  <!--</div>-->
+                <!--</template>-->
                 <template if="{{user.classes.length}}">
                   <div class="app" on-tap="{{go}}" id="showCoursesPage" link="https://app.library.uq.edu.au/v1/courses">
                     <core-image src="images/learning.svg" sizing="cover" preload fade></core-image>

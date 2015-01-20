@@ -4,12 +4,12 @@
 }
 
 core-drawer-panel {
-  background-color: #fafafa;
+  background-color: $background-primary;
 }
 
 @-moz-document url-prefix() {
   core-header-panel {
-    background-color: #fafafa !important;
+    background-color: $background-primary !important;
   }
 }
 
@@ -26,8 +26,8 @@ core-drawer-panel {
 }
 
 core-toolbar {
-  background-color: $primary;
-  border-bottom: 1px solid $primary-700;
+  background-color: $dark-primary;
+//  border-bottom: 1px solid $primary-700;
   color: $text-inverse;
 }
 
@@ -56,22 +56,11 @@ core-image {
   text-align: center;
 }
 
-.slideUp {
-  -webkit-transform: translate(0,-6em);
-  -moz-transform: translate(0,-6em);
-  -o-transform: translate(0,-6em);
-  -ms-transform: translate(0,-6em);
-  transform: translate(0,-6em);
-}
-
-.slideDown {
-  -webkit-transform: translate(0,0);
-  -moz-transform: translate(0,0);
-  -o-transform: translate(0,0);
-  -ms-transform: translate(0,0);
-  transform: translate(0,0);
-}
-
 #homePage {
   text-align: -moz-center;
+}
+
+// changes the home icon colours (assuming they are vectors)
+.homeIcon {
+    fill: $primary;
 }
