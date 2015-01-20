@@ -13,7 +13,7 @@
 
     <uqlibrary-api-account id="account"></uqlibrary-api-account>
 
-    <core-drawer-panel id="drawerPanel" drawerWidth="85%" responsiveWidth="9999px">
+    <core-drawer-panel id="drawerPanel" drawerWidth="256px" responsiveWidth="640px">
 
       <core-header-panel drawer id="drawer">
         <uqlibrary-menu account="{{user}}"></uqlibrary-menu>
@@ -61,18 +61,19 @@
                   <core-image src="images/computers.svg" sizing="cover" preload fade class="home-icon"></core-image>
                   <br>Computers
                 </div>
-                <div class="app" on-tap="{{doTransition}}" id="showCoursesPage">
+                <div flex class="app" on-tap="{{doTransition}}" id="showCoursesPage">
                   <core-image src="images/learning.svg" sizing="cover" preload fade class="home-icon"></core-image>
                   <br>Courses
+                </div>
+                <div flex class="app" on-tap="{{doTransition}}" id="showHoursPage">
+                  <core-image src="images/hours.svg" sizing="cover" preload fade class="home-icon"></core-image>
+                  <br>Hours
                 </div>
                 <br>
               </div>
 
               <div class="apps" horizontal around-justified layout>
-                <div flex class="app" on-tap="{{doTransition}}" id="showHoursPage">
-                  <core-image src="images/hours.svg" sizing="cover" preload fade class="home-icon"></core-image>
-                  <br>Hours
-                </div>
+
                 <template if="{{user.canMasquerade}}">
                   <div class="app" on-tap="{{doTransition}}" id="showMasqueradePage">
                     <core-image src="images/masquerade.svg" sizing="cover" preload fade class="home-icon"></core-image>
@@ -80,18 +81,12 @@
                   </div>
                 </template>
 
-                <!--<template if="{{user.classes.length}}">-->
-                  <!--<div class="app" on-tap="{{doTransition}}" id="showCoursesPage">-->
-                    <!--<core-image src="images/learning.svg" sizing="cover" preload fade class="home-icon"></core-image>-->
+                  <!--<template if="{{user.classes.length}}">-->
+                  <!--<div class="app" on-tap="{{go}}" id="showCoursesPage" link="https://app.library.uq.edu.au/v1/courses">-->
+                    <!--<core-image src="images/learning.svg" sizing="cover" preload fade></core-image>-->
                     <!--<br>Courses-->
                   <!--</div>-->
                 <!--</template>-->
-                <template if="{{user.classes.length}}">
-                  <div class="app" on-tap="{{go}}" id="showCoursesPage" link="https://app.library.uq.edu.au/v1/courses">
-                    <core-image src="images/learning.svg" sizing="cover" preload fade></core-image>
-                    <br>Courses
-                  </div>
-                </template>
               </div>
             </section>
 
@@ -217,7 +212,7 @@
 
           this.pageToolbar = {
             leftButton: {icon:'menu'},
-            title: 'UQ Library'
+            title: 'MyLibrary'
           };
         },
 
