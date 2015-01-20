@@ -77,7 +77,7 @@
                 </template>
 
                 <template if="{{user.classes.length}}">
-                  <div class="app" on-tap="{{doTransition}}" id="showCoursesPage">
+                  <div class="app" on-tap="{{go}}" id="showCoursesPage" link="https://app.library.uq.edu.au/v1/courses">
                     <core-image src="images/learning.svg" sizing="cover" preload fade></core-image>
                     <br>Courses
                   </div>
