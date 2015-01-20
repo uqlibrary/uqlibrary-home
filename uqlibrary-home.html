@@ -61,10 +61,12 @@
                   <core-image src="images/computers.svg" sizing="cover" preload fade class="home-icon"></core-image>
                   <br>Computers
                 </div>
+                <template if="{{user.classes.length}}">
                 <div flex class="app" on-tap="{{doTransition}}" id="showCoursesPage">
                   <core-image src="images/learning.svg" sizing="cover" preload fade class="home-icon"></core-image>
                   <br>Courses
                 </div>
+                  </template>
                 <div flex class="app" on-tap="{{doTransition}}" id="showHoursPage">
                   <core-image src="images/hours.svg" sizing="cover" preload fade class="home-icon"></core-image>
                   <br>Hours
@@ -81,12 +83,6 @@
                   </div>
                 </template>
 
-                  <!--<template if="{{user.classes.length}}">-->
-                  <!--<div class="app" on-tap="{{go}}" id="showCoursesPage" link="https://app.library.uq.edu.au/v1/courses">-->
-                    <!--<core-image src="images/learning.svg" sizing="cover" preload fade></core-image>-->
-                    <!--<br>Courses-->
-                  <!--</div>-->
-                <!--</template>-->
               </div>
             </section>
 
