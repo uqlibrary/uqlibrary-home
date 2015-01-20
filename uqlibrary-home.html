@@ -67,17 +67,16 @@
                   <br>Courses
                 </div>
                   </template>
-                <div flex class="app" on-tap="{{doTransition}}" id="showHoursPage">
-                  <core-image src="images/hours.svg" sizing="cover" preload fade class="home-icon"></core-image>
-                  <br>Hours
-                </div>
                 <br>
               </div>
 
               <div class="apps" horizontal around-justified layout>
-
+                <div flex class="app" on-tap="{{doTransition}}" id="showHoursPage">
+                  <core-image src="images/hours.svg" sizing="cover" preload fade class="home-icon"></core-image>
+                  <br>Hours
+                </div>
                 <template if="{{user.canMasquerade}}">
-                  <div class="app" on-tap="{{doTransition}}" id="showMasqueradePage">
+                  <div flex class="app" on-tap="{{doTransition}}" id="showMasqueradePage">
                     <core-image src="images/masquerade.svg" sizing="cover" preload fade class="home-icon"></core-image>
                     <br>Masquerade
                   </div>
