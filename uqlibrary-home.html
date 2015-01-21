@@ -46,9 +46,11 @@
             on-core-animated-pages-transition-end="{{transitionEndHandler}}">
 
             <section id="homePage">
-                <uqlibrary-search></uqlibrary-search>
+              <div flex horizontal center-justified layout>
+                <div flex><uqlibrary-search></uqlibrary-search></div>
+                </div>
 
-              <div class="apps" horizontal layout wrap>
+              <div flex class="apps" horizontal layout wrap>
                 <div flex class="app" on-tap="{{go}}" link="https://app.library.uq.edu.au/v1/booking">
                   <core-image src="images/booking.svg" sizing="cover" preload fade class="home-icon"></core-image>
                   <br>Booking
@@ -68,12 +70,12 @@
                 </div>
                   </template>
                 <br>
-                <div class="app" on-tap="{{doTransition}}" id="showHoursPage">
+                <div flex class="app" on-tap="{{doTransition}}" id="showHoursPage">
                   <core-image src="images/hours.svg" sizing="cover" preload fade class="home-icon"></core-image>
                   <br>Hours
                 </div>
                 <template if="{{user.canMasquerade}}">
-                  <div class="app" on-tap="{{doTransition}}" id="showMasqueradePage">
+                  <div flex class="app" on-tap="{{doTransition}}" id="showMasqueradePage">
                     <core-image src="images/masquerade.svg" sizing="cover" preload fade class="home-icon"></core-image>
                     <br>Masquerade
                   </div>
