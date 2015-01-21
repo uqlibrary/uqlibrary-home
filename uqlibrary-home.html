@@ -22,6 +22,7 @@
       <core-header-panel main id="main">
         <core-toolbar>
           <paper-icon-button
+            core-drawer-toggle
             id="toolBarLeftButton"
             hidden?="{{!pageToolbar.leftButton.icon}}"
             icon="{{pageToolbar.leftButton.icon ? pageToolbar.leftButton.icon : ''}}"
@@ -49,28 +50,25 @@
                 <uqlibrary-search></uqlibrary-search>
 
               <div class="apps" horizontal around-justified layout>
-                <div flex class="app" on-tap="{{go}}" link="https://app.library.uq.edu.au/v1/booking">
+                <div class="app" on-tap="{{go}}" link="https://app.library.uq.edu.au/v1/booking">
                   <core-image src="images/booking.svg" sizing="cover" preload fade class="home-icon"></core-image>
                   <br>Booking
                 </div>
-                <div flex class="app" on-tap="{{doTransition}}" id="showLoansPage">
+                <div class="app" on-tap="{{doTransition}}" id="showLoansPage">
                   <core-image src="images/borrowing.svg" sizing="cover" preload fade class="home-icon"></core-image>
                   <br>Borrowing
                 </div>
-                <div flex class="app" on-tap="{{doTransition}}" id="showAvailabilityPage">
+                <div class="app" on-tap="{{doTransition}}" id="showAvailabilityPage">
                   <core-image src="images/computers.svg" sizing="cover" preload fade class="home-icon"></core-image>
                   <br>Computers
                 </div>
-                <!--<template if="{{user.classes.length}}">-->
-                <div flex class="app" on-tap="{{doTransition}}" id="showCoursesPage">
+                <template if="{{user.classes.length}}">
+                <div class="app" on-tap="{{doTransition}}" id="showCoursesPage">
                   <core-image src="images/learning.svg" sizing="cover" preload fade class="home-icon"></core-image>
                   <br>Courses
                 </div>
-                  <!--</template>-->
+                  </template>
                 <br>
-              </div>
-
-              <div class="apps" horizontal around-justified layout>
                 <div flex class="app" on-tap="{{doTransition}}" id="showHoursPage">
                   <core-image src="images/hours.svg" sizing="cover" preload fade class="home-icon"></core-image>
                   <br>Hours
@@ -189,7 +187,7 @@
             if (e.detail.hasSession) {
               that.user = e.detail;
             } else {
-              that.$.account.login('https://app.library.uq.edu.au/v1/home');
+//              that.$.account.login('https://app.library.uq.edu.au/v1/home');
             }
           });
           this.$.account.get();
