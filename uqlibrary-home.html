@@ -48,32 +48,32 @@
             <section id="homePage">
                 <uqlibrary-search></uqlibrary-search>
 
-              <div flex class="apps" horizontal around-justified layout>
+              <div class="apps" horizontal layout wrap>
                 <div class="app" on-tap="{{go}}" link="https://app.library.uq.edu.au/v1/booking">
                   <core-image src="images/booking.svg" sizing="cover" preload fade class="home-icon"></core-image>
                   <br>Booking
                 </div>
-                <div flex class="app" on-tap="{{doTransition}}" id="showLoansPage">
+                <div class="app" on-tap="{{doTransition}}" id="showLoansPage">
                   <core-image src="images/borrowing.svg" sizing="cover" preload fade class="home-icon"></core-image>
                   <br>Borrowing
                 </div>
-                <div flex class="app" on-tap="{{doTransition}}" id="showAvailabilityPage">
+                <div class="app" on-tap="{{doTransition}}" id="showAvailabilityPage">
                   <core-image src="images/computers.svg" sizing="cover" preload fade class="home-icon"></core-image>
                   <br>Computers
                 </div>
                 <template if="{{user.classes.length}}">
-                <div flex class="app" on-tap="{{go}}" link="https://app.library.uq.edu.au/v1/courses">
+                <div class="app" on-tap="{{go}}" link="https://app.library.uq.edu.au/v1/courses">
                   <core-image src="images/learning.svg" sizing="cover" preload fade class="home-icon"></core-image>
                   <br>Courses
                 </div>
                   </template>
                 <br>
-                <div flex class="app" on-tap="{{doTransition}}" id="showHoursPage">
+                <div class="app" on-tap="{{doTransition}}" id="showHoursPage">
                   <core-image src="images/hours.svg" sizing="cover" preload fade class="home-icon"></core-image>
                   <br>Hours
                 </div>
                 <template if="{{user.canMasquerade}}">
-                  <div flex class="app" on-tap="{{doTransition}}" id="showMasqueradePage">
+                  <div class="app" on-tap="{{doTransition}}" id="showMasqueradePage">
                     <core-image src="images/masquerade.svg" sizing="cover" preload fade class="home-icon"></core-image>
                     <br>Masquerade
                   </div>

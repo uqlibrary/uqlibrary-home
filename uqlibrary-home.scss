@@ -23,6 +23,7 @@ core-drawer-panel {
 
 #drawer {
   background-color: $background-primary;
+  box-shadow: 1px 1px 8px rgba(0,0,0,0.1);
   border-right: 1px solid rgba(0, 0, 0, 0.1);
 }
 
