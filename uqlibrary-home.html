@@ -49,20 +49,20 @@
                 <uqlibrary-search></uqlibrary-search>
 
               <div class="apps" horizontal layout wrap>
-                <div class="app" on-tap="{{go}}" link="https://app.library.uq.edu.au/v1/booking">
+                <div flex class="app" on-tap="{{go}}" link="https://app.library.uq.edu.au/v1/booking">
                   <core-image src="images/booking.svg" sizing="cover" preload fade class="home-icon"></core-image>
                   <br>Booking
                 </div>
-                <div class="app" on-tap="{{doTransition}}" id="showLoansPage">
+                <div flex class="app" on-tap="{{doTransition}}" id="showLoansPage">
                   <core-image src="images/borrowing.svg" sizing="cover" preload fade class="home-icon"></core-image>
                   <br>Borrowing
                 </div>
-                <div class="app" on-tap="{{doTransition}}" id="showAvailabilityPage">
+                <div flex class="app" on-tap="{{doTransition}}" id="showAvailabilityPage">
                   <core-image src="images/computers.svg" sizing="cover" preload fade class="home-icon"></core-image>
                   <br>Computers
                 </div>
                 <template if="{{user.classes.length}}">
-                <div class="app" on-tap="{{go}}" link="https://app.library.uq.edu.au/v1/courses">
+                <div flex class="app" on-tap="{{go}}" link="https://app.library.uq.edu.au/v1/courses">
                   <core-image src="images/learning.svg" sizing="cover" preload fade class="home-icon"></core-image>
                   <br>Courses
                 </div>

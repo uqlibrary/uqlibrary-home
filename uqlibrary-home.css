@@ -761,7 +761,7 @@ core-image {
 
 .app {
   box-sizing: border-box;
-  margin: 6px;
+  margin: 6px 20px;
   min-height: 44px;
   min-width: 44px;
   font-size: 0.875em;
