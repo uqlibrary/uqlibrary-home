@@ -751,11 +751,6 @@ core-toolbar {
 core-menu {
   margin: 0; }
 
-core-image {
-  width: 44px;
-  height: 44px;
-  background-color: transparent; }
-
 .apps {
   margin-top: 10px; }
 
