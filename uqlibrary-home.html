@@ -56,11 +56,11 @@
                   <br>Booking
                 </div>
                 <div flex class="app" on-tap="{{doTransition}}" id="showLoansPage">
-                  <core-icon icon="av:queue" class="home-icon"></core-icon>
+                  <core-icon icon="maps:local-library" class="home-icon"></core-icon>
                   <br>Borrowing
                 </div>
                 <div flex class="app" on-tap="{{doTransition}}" id="showAvailabilityPage">
-                  <core-icon icon="hardware:desktop-windows" class="home-icon"></core-icon>
+                  <core-icon icon="hardware:desktop-mac" class="home-icon"></core-icon>
                   <br>Computers
                 </div>
                 <template if="{{user.classes.length}}">
@@ -76,7 +76,7 @@
                 </div>
                 <template if="{{user.canMasquerade}}">
                   <div flex class="app" on-tap="{{doTransition}}" id="showMasqueradePage">
-                    <core-icon icon="announcement" class="home-icon"></core-icon>
+                    <core-icon icon="supervisor-account" class="home-icon" id="masquerade"></core-icon>
                     <br>Masquerade
                   </div>
                 </template>
