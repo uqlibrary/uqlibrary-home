@@ -3,38 +3,12 @@
 :host {
 }
 
-core-drawer-panel {
-  background-color: $background-primary;
-}
-
-@-moz-document url-prefix() {
-  core-header-panel {
-    background-color: $background-primary !important;
-  }
-}
-
 #masquerade {
   margin: 16px;
 }
 
 #booking {
   margin: 16px;
-}
-
-#drawer {
-  background-color: $background-primary;
-  box-shadow: 1px 1px 8px rgba(0,0,0,0.1);
-  border-right: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-core-toolbar {
-  background-color: $dark-primary;
-//  border-bottom: 1px solid $primary-700;
-  color: $text-inverse;
-}
-
-core-menu {
-  margin: 0;
 }
 
 core-image {
