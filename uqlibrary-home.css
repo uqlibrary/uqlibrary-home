@@ -767,7 +767,10 @@ core-menu {
 #homePage {
   text-align: -moz-center; }
 
-.homeIcon {
-  fill: #7b0c9d; }
+.home-icon {
+  width: 44px;
+  height: 44px;
+  color: #7b0c9d;
+}
 
 /*# sourceMappingURL=uqlibrary-home.css.map */
