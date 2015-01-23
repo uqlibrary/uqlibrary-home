@@ -186,10 +186,7 @@ core-toolbar {
     color: #ffffff; }
 
 core-drawer-panel {
-  background-color: #ffffff; }
-
-core-header-panel {
-  background-color: #ffffff; }
+  background-color: #fafafa; }
 
 core-toolbar {
   background-color: #7b0c9d;
@@ -740,7 +737,7 @@ core-drawer-panel {
   margin: 16px; }
 
 #drawer {
-  background-color: #FAFAFA;
+  background-color: #ffffff;
   border-right: 1px solid rgba(0, 0, 0, 0.1); }
 
 core-toolbar {
