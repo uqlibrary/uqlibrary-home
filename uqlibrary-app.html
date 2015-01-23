@@ -29,6 +29,10 @@
           console.log("feedback should send!");
         },
 
+        askLogout: function () {
+          console.log("logout dialog!");
+        },
+
         doTransition: function (e, data, sender) {
           var p = this.pageTransitions[sender.id];
           if (p.transition) {
