@@ -177,8 +177,10 @@ core-icon {
   core-icon.inactive-inverse {
     color: rgba(255, 255, 255, 0.3); }
 
-core-menu core-icon {
-  margin-right: 2em; }
+core-menu {
+  margin: 0; }
+  core-menu core-icon {
+    margin-right: 2em; }
 
 core-toolbar {
   background-color: #ffffff; }
@@ -186,11 +188,21 @@ core-toolbar {
     color: #ffffff; }
 
 core-drawer-panel {
-  background-color: #fafafa; }
+  background-color: #ffffff; }
+
+core-header-panel {
+  background-color: #FAFAFA; }
 
 core-toolbar {
-  background-color: #7b0c9d;
+  background-color: #4a075f;
   color: rgba(255, 255, 255, 0.87); }
+
+#drawer {
+  background-color: #ffffff;
+  border-right: 1px solid rgba(0, 0, 0, 0.1); }
+
+#main {
+  background-color: #FAFAFA; }
 
 core-menu {
   margin: 0; }
@@ -208,6 +220,51 @@ paper-tabs {
     margin-bottom: 4px; }
   paper-tabs paper-tab::shadow #ink {
     color: #8db800; }
+
+#account {
+  font-size: 0.875em;
+  background-color: #7b0c9d;
+  border-bottom: 1px solid #cccccc; }
+  #account core-icon {
+    height: 64px;
+    width: 64px; }
+  #account #details {
+    padding: 110px 14px 14px 14px; }
+  #account #name {
+    margin-bottom: 2px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden; }
+  #account #mail {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden; }
+
+#logoutButton {
+  height: 44px;
+  width: 44px;
+  padding: 10px; }
+
+.home-icon {
+  width: 44px;
+  height: 44px;
+  color: #7b0c9d; }
+
+/* Icon Button */
+.icon-button {
+  position: relative;
+  display: inline-block;
+  width: 56px;
+  height: 56px; }
+
+.icon-button > core-icon {
+  margin: 16px;
+  transition: -webkit-transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1); }
+
+.icon-button:hover > core-icon {
+  -webkit-transform: scale(1.2);
+  transform: scale(1.2); }
 
 .single-line-list {
   list-style-type: none;
@@ -718,34 +775,30 @@ paper-fab {
   .hint-box.unavailable {
     background-color: #BDBDBD; }
 
+.card {
+  display: block;
+  border-radius: 2px;
+  box-sizing: border-box;
+  height: auto;
+  background: #ffffff;
+  width: 320px;
+  margin: 16px auto; }
+  .card .cardSection {
+    border-bottom: 1px solid #cccccc;
+    padding: 16px;
+    display: block; }
+
 :host,
 :host *,
 ::content * {
   box-sizing: border-box;
   outline: none; }
 
-core-drawer-panel {
-  background-color: #FAFAFA; }
-
-@-moz-document url-prefix() {
-  core-header-panel {
-    background-color: #FAFAFA !important; } }
 #masquerade {
   margin: 16px; }
 
 #booking {
   margin: 16px; }
-
-#drawer {
-  background-color: #ffffff;
-  border-right: 1px solid rgba(0, 0, 0, 0.1); }
-
-core-toolbar {
-  background-color: #4a075f;
-  color: rgba(255, 255, 255, 0.87); }
-
-core-menu {
-  margin: 0; }
 
 .apps {
   margin-top: 10px; }
@@ -762,15 +815,5 @@ core-menu {
 
 #homePage {
   text-align: -moz-center; }
-
-.home-icon {
-  width: 44px;
-  height: 44px;
-  color: #7b0c9d;
-}
-
-#masquerade-icon {
-  color: #ce4627;
-}
 
 /*# sourceMappingURL=uqlibrary-home.css.map */
