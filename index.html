@@ -28,9 +28,15 @@
     <link rel="stylesheet" href="../uqlibrary-elements/resources/theme/app.css">
     <link rel="stylesheet" href="old-browser-message.css">
 </head>
-<body unresolved fullbleed>
+<body fullbleed>
+<div id="loader" class="subhead">
+    <p>Loading...</p>
+    <svg class="circular">
+        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="4" stroke-miterlimit="10"/>
+    </svg>
+</div>
 
-<uqlibrary-home></uqlibrary-home>
+<uqlibrary-home unresolved></uqlibrary-home>
 <div id="unsupportedBrowser">
 
     <div id="unsupportedBrowserBanner">
@@ -43,6 +49,9 @@
 </div>
 
 <script>
+    window.addEventListener('polymer-ready', function() {
+        document.body.removeChild(document.getElementById('loader'));
+    });
     var $buoop = {
         vs: {i: 10, f: 15, o: 15, s: 7, c: 36},  // browser versions to notify
         reminder: 0,                   // after how many hours should the message reappear
