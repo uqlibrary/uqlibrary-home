@@ -15,17 +15,27 @@
   margin-top: 10px;
 }
 
-.app {
-  box-sizing: border-box;
-  margin: 6px 20px;
-  min-height: 44px;
-  min-width: 44px;
-  font-size: 0.875em;
-  font-weight: 500;
-  color: $secondary-text;
-  text-align: center;
-}
-
 #homePage {
   text-align: -moz-center;
+}
+
+.app {
+  width: 120px;
+  height: 120px;
+  text-align: center;
+}
+.home-icon {
+  width: 44px;
+  height: 44px;
+  color: $primary;
+}
+paper-icon-button.huge::shadow #icon {
+  width: 44px;
+  height: 44px;
+}
+.iconLabel {
+  margin: -8px 0 0 0;
+  text-align: center;
+  color: $secondary-text;
+  font-size: 14px;
 }

@@ -803,17 +803,28 @@ paper-fab {
 .apps {
   margin-top: 10px; }
 
-.app {
-  box-sizing: border-box;
-  margin: 6px 20px;
-  min-height: 44px;
-  min-width: 44px;
-  font-size: 0.875em;
-  font-weight: 500;
-  color: rgba(0, 0, 0, 0.54);
-  text-align: center; }
-
 #homePage {
   text-align: -moz-center; }
+
+.app {
+  width: 120px;
+  height: 120px;
+  text-align: center;
+}
+.home-icon {
+  width: 44px;
+  height: 44px;
+  color: #7b0c9d;
+}
+paper-icon-button.huge::shadow #icon {
+  width: 44px;
+  height: 44px;
+}
+.iconLabel {
+  margin: -8px 0 0 0;
+  text-align: center;
+  color: #757575;
+  font-size: 14px;
+}
 
 /*# sourceMappingURL=uqlibrary-home.css.map */

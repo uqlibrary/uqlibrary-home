@@ -47,37 +47,56 @@
                 </div>
 
               <div flex class="apps" horizontal layout wrap>
-                <div flex class="app" on-tap="{{go}}" link="https://app.library.uq.edu.au/v1/booking">
-                  <core-icon icon="event" class="home-icon"></core-icon>
-                  <br>Booking
-                </div>
-                <div flex class="app" on-tap="{{go}}" link="https://app.library.uq.edu.au/v1/borrowing">
-                  <core-icon icon="maps:local-library" class="home-icon"></core-icon>
-                  <br>Borrowing
-                </div>
-                <div flex class="app" on-tap="{{doTransition}}" id="showAvailabilityPage">
-                  <core-icon icon="hardware:desktop-mac" class="home-icon"></core-icon>
-                  <br>Computers
-                </div>
-                <template if="{{user.classes.length}}">
-                <div flex class="app" on-tap="{{go}}" link="https://app.library.uq.edu.au/v1/courses">
-                  <core-icon icon="social:school" class="home-icon"></core-icon>
-                  <br>Courses
-                </div>
-                  </template>
-                <br>
-                <div flex class="app" on-tap="{{go}}" link="https://app.library.uq.edu.au/v1/hours">
-                  <core-icon icon="schedule" class="home-icon"></core-icon>
-                  <br>Hours
-                </div>
-                <template if="{{user.canMasquerade}}">
-                  <div flex class="app" on-tap="{{doTransition}}" id="showMasqueradePage">
-                    <core-icon icon="supervisor-account" class="home-icon"></core-icon>
-                    <br>Masquerade
+
+                <core-label>
+                  <div flex class="app" on-tap="{{go}}" link="https://app.library.uq.edu.au/v1/booking">
+                    <paper-icon-button icon="event" title="Booking" on-tap="{{go}}" link="https://app.library.uq.edu.au/v1/booking" class="huge home-icon"></paper-icon-button>
+                    <p class="iconLabel" for>Booking</p>
                   </div>
+                </core-label>
+
+                <core-label>
+                  <div flex class="app" on-tap="{{go}}" link="https://app.library.uq.edu.au/v1/borrowing">
+                    <paper-icon-button icon="maps:local-library" title="Borrowing" on-tap="{{go}}" link="https://app.library.uq.edu.au/v1/borrowing" class="huge home-icon"></paper-icon-button>
+                    <p class="iconLabel" for>Borrowing</p>
+                  </div>
+                </core-label>
+
+                <core-label>
+                  <div flex class="app" on-tap="{{doTransition}}" id="showAvailabilityPage">
+                    <paper-icon-button icon="hardware:desktop-mac" title="Computers" on-tap="{{doTransition}}" id="showAvailabilityPage" class="huge home-icon"></paper-icon-button>
+                    <p class="iconLabel" for>Computers</p>
+                  </div>
+                </core-label>
+
+                <template if="{{user.classes.length}}">
+                <core-label>
+                  <div flex class="app" on-tap="{{go}}" link="https://app.library.uq.edu.au/v1/courses">
+                    <paper-icon-button icon="social:school" title="Courses" on-tap="{{go}}" link="https://app.library.uq.edu.au/v1/courses" class="huge home-icon"></paper-icon-button>
+                    <p class="iconLabel" for>Courses</p>
+                  </div>
+                </core-label>
                 </template>
 
+                <core-label>
+                  <div flex class="app" on-tap="{{go}}" link="https://app.library.uq.edu.au/v1/hours">
+                    <paper-icon-button icon="schedule" title="Courses" on-tap="{{go}}" link="https://app.library.uq.edu.au/v1/courses" class="huge home-icon"></paper-icon-button>
+                    <p class="iconLabel" for>Hours</p>
+                  </div>
+                </core-label>
+
+                <template if="{{user.canMasquerade}}">
+
+                  <core-label>
+                    <div flex class="app" on-tap="{{doTransition}}" id="showMasqueradePage">
+                      <paper-icon-button icon="perm-identity" title="Masquerade" on-tap="{{doTransition}}" id="showMasqueradePage" class="huge home-icon"></paper-icon-button>
+                      <p class="iconLabel" for>Masquerade</p>
+                    </div>
+                  </core-label>
+
+                </template>
               </div>
+
             </section>
 
             <section id="loansPage">
