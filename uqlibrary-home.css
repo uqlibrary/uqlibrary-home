@@ -815,13 +815,17 @@ paper-fab {
   width: 44px;
   height: 44px;
   color: #7b0c9d;
+  padding: 0;
 }
 paper-icon-button.huge::shadow #icon {
   width: 44px;
   height: 44px;
 }
+uqlibrary-home paper-icon-button.huge #icon {
+  color: #7b0c9d;
+}
 .iconLabel {
-  margin: -8px 0 0 0;
+  margin: 0;
   text-align: center;
   color: #757575;
   font-size: 14px;

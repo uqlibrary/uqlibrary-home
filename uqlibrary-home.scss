@@ -20,21 +20,25 @@
 }
 
 .app {
-  width: 120px;
-  height: 120px;
+  width: 110px;
+  height: 70px;
   text-align: center;
 }
 .home-icon {
   width: 44px;
   height: 44px;
   color: $primary;
+  padding: 0;
 }
 paper-icon-button.huge::shadow #icon {
   width: 44px;
   height: 44px;
 }
+uqlibrary-home paper-icon-button.huge #icon {
+  color: $primary;
+}
 .iconLabel {
-  margin: -8px 0 0 0;
+  margin: 0;
   text-align: center;
   color: $secondary-text;
   font-size: 14px;
