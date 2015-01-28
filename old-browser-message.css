@@ -1,10 +1,10 @@
-body {
+#unsupportedBrowser {
     background-color: #fafafa;
     font-family: "Roboto", sans-serif;
     font-size: 14px;
 }
 
-h1 {
+#unsupportedBrowserHeader {
     font-size: 1.5em;
     font-weight: 200;
     margin: 16px;
@@ -13,16 +13,16 @@ h1 {
     font-family: "Roboto", sans-serif;
 }
 
-a {
+#unsupportedBrowser a {
     color: #007e9e;
 }
 
-a:hover {
+#unsupportedBrowser a:hover {
     text-decoration: underline;
     color: #7B1FA2;
 }
 
-.banner {
+#unsupportedBrowserBanner {
     height: 56px;
     background-color: #7B1FA2;
     color: white;
@@ -30,7 +30,7 @@ a:hover {
     padding: 10px 15px 0 15px;
 }
 
-.card {
+#unsupportedBrowserSupportMessage {
     max-width: 300px;
     margin: auto;
     margin-top: 20px;
