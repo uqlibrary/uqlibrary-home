@@ -87,9 +87,9 @@
 
                 <template if="{{user.canMasquerade}}">
 
-                  <core-label>
-                    <div flex class="app" on-tap="{{doTransition}}" id="showMasqueradePage">
-                      <paper-icon-button icon="perm-identity" title="Masquerade" on-tap="{{doTransition}}" id="showMasqueradePage" class="huge home-icon"></paper-icon-button>
+                  <core-label on-tap="{{doTransition}}" id="showMasqueradePage">
+                    <div flex class="app" >
+                      <paper-icon-button icon="perm-identity" title="Masquerade" class="huge home-icon"></paper-icon-button>
                       <p class="iconLabel" for>Masquerade</p>
                     </div>
                   </core-label>
