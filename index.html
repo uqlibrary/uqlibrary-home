@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=no">
-    <title>UQ Library</title>
+    <title>UQ Library | My Library Home</title>
     <script>
         function isIE() {
             var myNav = navigator.userAgent.toLowerCase();
@@ -85,7 +85,7 @@
         if (window.jQuery) {
             $(document).ready(function () {
                 var pgwBrowser = $.pgwBrowser();
-                var messageCard = document.querySelector('#supportMessage');
+                var messageCard = document.querySelector('#unsupportedBrowserSupportMessage');
                 var e = document.createElement("p");
                 e.id = "browserDetails";
                 switch (pgwBrowser.os.group) {
