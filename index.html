@@ -29,26 +29,27 @@
     <link rel="stylesheet" href="old-browser-message.css">
 </head>
 <body fullbleed>
-<uqlibrary-home unresolved></uqlibrary-home>
+
 <div id="unsupportedBrowser">
 
     <div id="unsupportedBrowserBanner">
         <h1 id="unsupportedBrowserHeader">UQ Library</h1>
     </div>
     <div class="card" id="unsupportedBrowserSupportMessage">
-
-    </div>
-    <div id="loader" class="subhead">
-        <p>Loading...</p>
-        <svg class="circular">
-            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="4" stroke-miterlimit="10"/>
-        </svg>
+        <div id="loader" class="subhead">
+            <p>Loading...</p>
+            <svg class="circular">
+                <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="4" stroke-miterlimit="10"/>
+            </svg>
+        </div>
     </div>
 </div>
 
+<uqlibrary-home unresolved></uqlibrary-home>
+
 <script>
     window.addEventListener('polymer-ready', function() {
-        document.body.removeChild(document.getElementById('loader'));
+        document.body.removeChild(document.getElementById('unsupportedBrowser'));
     });
     var $buoop = {
         vs: {i: 10, f: 15, o: 15, s: 7, c: 36},  // browser versions to notify
