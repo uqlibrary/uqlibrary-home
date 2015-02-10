@@ -45,39 +45,46 @@
               <div flex class="apps" horizontal layout wrap>
 
                 <core-label>
-                  <div flex class="app" on-tap="{{go}}" link="https://app.library.uq.edu.au/v1/booking">
-                    <paper-icon-button icon="event" title="Booking" on-tap="{{go}}" link="https://app.library.uq.edu.au/v1/booking" class="huge home-icon"></paper-icon-button>
+                  <div flex class="app" on-tap="{{go}}" link="/booking">
+                    <paper-icon-button icon="event" title="Booking" on-tap="{{go}}" link="/booking" class="huge home-icon"></paper-icon-button>
                     <p class="iconLabel" for>Booking</p>
                   </div>
                 </core-label>
 
                 <core-label>
-                  <div flex class="app" on-tap="{{go}}" link="https://app.library.uq.edu.au/v1/borrowing">
-                    <paper-icon-button icon="maps:local-library" title="Borrowing" on-tap="{{go}}" link="https://app.library.uq.edu.au/v1/borrowing" class="huge home-icon"></paper-icon-button>
+                  <div flex class="app" on-tap="{{go}}" link="/borrowing">
+                    <paper-icon-button icon="maps:local-library" title="Borrowing" on-tap="{{go}}" link="/borrowing" class="huge home-icon"></paper-icon-button>
                     <p class="iconLabel" for>Borrowing</p>
                   </div>
                 </core-label>
 
                 <core-label>
-                  <div flex class="app" on-tap="{{go}}" link="https://app.library.uq.edu.au/v1/computers/">
-                    <paper-icon-button icon="hardware:desktop-mac" title="Computers" on-tap="{{go}}" link="https://app.library.uq.edu.au/v1/computers/" class="huge home-icon"></paper-icon-button>
+                  <div flex class="app" on-tap="{{go}}" link="/computers/">
+                    <paper-icon-button icon="hardware:desktop-mac" title="Computers" on-tap="{{go}}" link="/computers/" class="huge home-icon"></paper-icon-button>
                     <p class="iconLabel" for>Computers</p>
                   </div>
                 </core-label>
 
                 <template if="{{user.classes.length}}">
                 <core-label>
-                  <div flex class="app" on-tap="{{go}}" link="https://app.library.uq.edu.au/v1/courses">
-                    <paper-icon-button icon="social:school" title="Courses" on-tap="{{go}}" link="https://app.library.uq.edu.au/v1/courses" class="huge home-icon"></paper-icon-button>
+                  <div flex class="app" on-tap="{{go}}" link="/courses">
+                    <paper-icon-button icon="social:school" title="Courses" on-tap="{{go}}" link="/courses" class="huge home-icon"></paper-icon-button>
                     <p class="iconLabel" for>Courses</p>
                   </div>
                 </core-label>
                 </template>
 
                 <core-label>
-                  <div flex class="app" on-tap="{{go}}" link="https://app.library.uq.edu.au/v1/hours">
-                    <paper-icon-button icon="schedule" title="Courses" on-tap="{{go}}" link="https://app.library.uq.edu.au/v1/courses" class="huge home-icon"></paper-icon-button>
+                  <div flex class="app" on-tap="{{go}}" link="/hours">
+                    <paper-icon-button icon="schedule" title="Hours" on-tap="{{go}}" link="/hours" class="huge home-icon"></paper-icon-button>
                     <p class="iconLabel" for>Hours</p>
+                  </div>
+                </core-label>
+
+                <core-label>
+                  <div flex class="app" on-tap="{{go}}" link="/feedback">
+                    <paper-icon-button icon="communication:comment" title="Feedback" on-tap="{{go}}" link="/feedback" class="huge home-icon"></paper-icon-button>
+                    <p class="iconLabel" for>Feedback</p>
                   </div>
                 </core-label>
 
