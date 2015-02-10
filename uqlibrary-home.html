@@ -1,10 +1,6 @@
 <link rel="import" href="../uqlibrary-elements/0.5.4/lib/vulcanized.html">
 <link rel="import" href="uqlibrary-app.html">
-<link rel="import" href="uqlibrary-loans-page.html">
-<link rel="import" href="uqlibrary-hours-page.html">
-<link rel="import" href="uqlibrary-availability-page.html">
 <link rel="import" href="uqlibrary-masquerade-page.html">
-<link rel="import" href="uqlibrary-courses-page.html">
 
 <polymer-element name="uqlibrary-home" extends="uqlibrary-app">
 
@@ -141,60 +137,12 @@
         transitioning: false,
 
         created: function () {
-          this.notifications = [
-            {
-              text: 'You have new booking',
-              image: 'images/notification.png',
-              link: 'https://app.library.uq.edu.au/v1/booking',
-              isNew: true
-            },
-            {
-              text: 'You 2 loans overdue',
-              link: 'https://app.library.uq.edu.au/v1/booking',
-              isNew: true
-            },
-            {
-              text: 'New e-journal have been released',
-              link: 'https://app.library.uq.edu.au/v1/booking',
-              isNew: false
-            },
-            {
-              text: 'You have new booking',
-              image: 'images/notification.png',
-              link: '',
-              isNew: false
-            },
-            {
-              text: 'You 2 loans overdue',
-              link: 'https://app.library.uq.edu.au/v1/booking',
-              isNew: false
-            }
-          ];
+
           this.pageTransitions = {
-            showLoansPage: {
-              transition: 'slide-from-right',
-              destination: 'loansPage',
-              action: 'showLoansPage'
-            },
-            showAvailabilityPage: {
-              transition: 'slide-from-right',
-              destination: 'availabilityPage',
-              action: 'showAvailabilityPage'
-            },
-            showHoursPage: {
-              transition: 'slide-from-right',
-              destination: 'hoursPage',
-              action: 'showHoursPage'
-            },
             showMasqueradePage: {
               transition: 'slide-from-right',
               destination: 'masqueradePage',
               action: 'showMasqueradePage'
-            },
-            showCoursesPage: {
-              transition: 'slide-from-right',
-              destination: 'coursesPage',
-              action: 'showCoursesPage'
             }
           };
         },
@@ -227,48 +175,6 @@
           };
         },
 
-        showLoansPage: function() {
-          this.pageTransitions.toolBarLeftButton = {
-            transition: 'slide-from-right',
-            destination: 'homePage',
-            action: 'showHomePage'
-          };
-
-          this.pageToolbar = {
-            leftButton: {icon:'arrow-back'},
-            title: 'Loans'
-          };
-          this.$.loansPageEl.show();
-        },
-
-        showAvailabilityPage: function() {
-          this.pageTransitions.toolBarLeftButton = {
-            transition: 'slide-from-right',
-            destination: 'homePage',
-            action: 'showHomePage'
-          };
-
-          this.pageToolbar = {
-            leftButton: {icon:'arrow-back'},
-            title: 'Computers'
-          };
-          this.$.availabilityPageEl.show();
-        },
-
-        showHoursPage: function() {
-          this.pageTransitions.toolBarLeftButton = {
-            transition: 'slide-from-right',
-            destination: 'homePage',
-            action: 'showHomePage'
-          };
-
-          this.pageToolbar = {
-            leftButton: {icon:'arrow-back'},
-            title: 'Hours'
-          };
-          this.$.hoursPageEl.show();
-        },
-
         showMasqueradePage: function() {
           this.pageTransitions.toolBarLeftButton = {
             transition: 'slide-from-right',
@@ -282,26 +188,11 @@
           };
         },
 
-        showCoursesPage: function() {
-          this.pageTransitions.toolBarLeftButton = {
-            transition: 'slide-from-right',
-            destination: 'homePage',
-            action: 'showHomePage'
-          };
-
-          this.pageToolbar = {
-            leftButton: {icon:'arrow-back'},
-            title: 'Courses'
-          };
-
-          this.$.coursesPageEl.show();
-
-        },
-
         transitionPrepareHandler: function() {
           this.transitioning = true;
           this.fire('core-signal', {name: "transitioning-change", data: {transitioning: this.transitioning}});
         },
+
         transitionEndHandler: function() {
           this.transitioning = false;
           this.fire('core-signal', {name: "transitioning-change", data: {transitioning: this.transitioning}});
