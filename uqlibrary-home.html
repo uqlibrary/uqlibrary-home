@@ -160,7 +160,7 @@
             if (e.detail.hasSession) {
               that.user = e.detail;
             } else {
-              that.$.account.login('https://app.library.uq.edu.au/v1/home');
+              that.$.account.login(document.location.href);
             }
           });
           this.$.account.get();
@@ -171,8 +171,8 @@
           var currentURL = document.URL;
           var nextLocation = el.attributes.link.value;
           var nextURL = currentURL.match("^(.*[\\\/]){3}");
-          currentURL.replace(nextURL[1],nextLocation)
-          document.location.href = currentURL;
+
+          document.location.href = currentURL.replace(nextURL[1],nextLocation);
         },
 
         showHomePage: function() {
