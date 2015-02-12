@@ -170,9 +170,18 @@
         go: function (e, _, el) {
           var currentURL = document.URL;
           var nextLocation = el.attributes.link.value;
-          var nextURL = currentURL.match("^(.*[\\\/]){3}");
 
-          document.location.href = currentURL.replace(nextURL[1],nextLocation);
+          // If the link is absolute (contains 'http' in it's string),
+          // simply send the browser to that address
+          if (currentURL.indexOf('http') > -1) {
+            document.location.href = nextLocation;
+
+            // otherwise, replace the word before the last backslash
+            // and point the browser to that newly constructed address
+          } else if (currentURL.indexOf('http') == -1) {
+            var nextURL = currentURL.match("^(.*[\\\/]){3}");
+            document.location.href = currentURL.replace(nextURL[1],nextLocation);
+          }
         },
 
         showHomePage: function() {
