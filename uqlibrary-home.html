@@ -167,21 +167,17 @@
           this.showHomePage();
         },
 
-        go: function (e, _, el) {
-          var currentURL = document.URL;
-          var nextLocation = el.attributes.link.value;
-
-          // If the link is absolute (contains 'http' in it's string),
-          // simply send the browser to that address
-          if (currentURL.indexOf('http') > -1) {
-            document.location.href = nextLocation;
-
-            // otherwise, replace the word before the last backslash
-            // and point the browser to that newly constructed address
-          } else if (currentURL.indexOf('http') == -1) {
-            var nextURL = currentURL.match("^(.*[\\\/]){3}");
-            document.location.href = currentURL.replace(nextURL[1],nextLocation);
+        constructURL: function(currentURL, nextURL) {
+          if (nextURL.indexOf('http') < 0) {
+            //if path is relative, update current path
+            var nextUrlMatch = currentURL.match("^(.*[\\\/]){3}");
+            nextURL = currentURL.replace(nextUrlMatch[1], nextURL + "/");
           }
+          return nextURL;
+        },
+
+        go: function (e, _, el) {
+          document.location.href = this.constructURL(document.URL,el.attributes.link.value);
         },
 
         showHomePage: function() {
