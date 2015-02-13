@@ -45,21 +45,21 @@
               <div flex class="apps" horizontal layout wrap>
 
                 <core-label>
-                  <div flex class="app" on-tap="{{go}}" link="booking">
+                  <div flex class="app" on-tap="{{go}}" link="booking" tabindex="0">
                     <paper-icon-button icon="event" title="Booking" on-tap="{{go}}" link="booking" class="huge home-icon"></paper-icon-button>
                     <p class="iconLabel" for>Booking</p>
                   </div>
                 </core-label>
 
                 <core-label>
-                  <div flex class="app" on-tap="{{go}}" link="borrowing">
+                  <div flex class="app" on-tap="{{go}}" link="borrowing" tabindex="0">
                     <paper-icon-button icon="maps:local-library" title="Borrowing" on-tap="{{go}}" link="borrowing" class="huge home-icon"></paper-icon-button>
                     <p class="iconLabel" for>Borrowing</p>
                   </div>
                 </core-label>
 
                 <core-label>
-                  <div flex class="app" on-tap="{{go}}" link="computers">
+                  <div flex class="app" on-tap="{{go}}" link="computers" tabindex="0">
                     <paper-icon-button icon="hardware:desktop-mac" title="Computers" on-tap="{{go}}" link="computers" class="huge home-icon"></paper-icon-button>
                     <p class="iconLabel" for>Computers</p>
                   </div>
@@ -67,7 +67,7 @@
 
                 <template if="{{user.classes.length}}">
                 <core-label>
-                  <div flex class="app" on-tap="{{go}}" link="courses">
+                  <div flex class="app" on-tap="{{go}}" link="courses" tabindex="0">
                     <paper-icon-button icon="social:school" title="Courses" on-tap="{{go}}" link="courses" class="huge home-icon"></paper-icon-button>
                     <p class="iconLabel" for>Courses</p>
                   </div>
@@ -75,14 +75,14 @@
                 </template>
 
                 <core-label>
-                  <div flex class="app" on-tap="{{go}}" link="hours">
+                  <div flex class="app" on-tap="{{go}}" link="hours" tabindex="0">
                     <paper-icon-button icon="schedule" title="Hours" on-tap="{{go}}" link="hours" class="huge home-icon"></paper-icon-button>
                     <p class="iconLabel" for>Hours</p>
                   </div>
                 </core-label>
 
                 <core-label>
-                  <div flex class="app" on-tap="{{go}}" link="feedback">
+                  <div flex class="app" on-tap="{{go}}" link="feedback" tabindex="0">
                     <paper-icon-button icon="communication:comment" title="Feedback" on-tap="{{go}}" link="feedback" class="huge home-icon"></paper-icon-button>
                     <p class="iconLabel" for>Feedback</p>
                   </div>
@@ -90,7 +90,7 @@
 
                 <template if="{{user.canMasquerade}}">
 
-                  <core-label on-tap="{{doTransition}}" id="showMasqueradePage">
+                  <core-label on-tap="{{doTransition}}" id="showMasqueradePage" tabindex="0">
                     <div flex class="app" >
                       <paper-icon-button icon="perm-identity" title="Masquerade" class="huge home-icon"></paper-icon-button>
                       <p class="iconLabel" for>Masquerade</p>
