@@ -1,25 +1,21 @@
 <link rel="import" href="../uqlibrary-elements/0.5.4/lib/vulcanized.html">
 <link rel="import" href="uqlibrary-app.html">
-<link rel="import" href="uqlibrary-loans-page.html">
-<link rel="import" href="uqlibrary-hours-page.html">
-<link rel="import" href="uqlibrary-availability-page.html">
 <link rel="import" href="uqlibrary-masquerade-page.html">
-<link rel="import" href="uqlibrary-courses-page.html">
 
 <polymer-element name="uqlibrary-home" extends="uqlibrary-app">
 
   <template>
-    <link rel="stylesheet" href="uqlibrary-home.css">
+    <link rel="stylesheet" href="../uqlibrary-elements/resources/theme/element.css">
 
     <uqlibrary-api-account id="account"></uqlibrary-api-account>
 
-    <core-drawer-panel id="drawerPanel" drawerWidth="256px" responsiveWidth="768px">
+    <core-drawer-panel id="drawerPanel" class="drawer" drawerWidth="256px" responsiveWidth="768px">
 
-      <core-header-panel drawer id="drawer">
+      <core-header-panel drawer>
         <uqlibrary-menu account="{{user}}"></uqlibrary-menu>
       </core-header-panel>
 
-      <core-header-panel main id="main">
+      <core-header-panel main class="main">
         <core-toolbar>
           <paper-icon-button
             core-drawer-toggle
@@ -49,39 +45,46 @@
               <div flex class="apps" horizontal layout wrap>
 
                 <core-label>
-                  <div flex class="app" on-tap="{{go}}" link="https://app.library.uq.edu.au/v1/booking">
-                    <paper-icon-button icon="event" title="Booking" on-tap="{{go}}" link="https://app.library.uq.edu.au/v1/booking" class="huge home-icon"></paper-icon-button>
+                  <div flex class="app" on-tap="{{go}}" link="booking">
+                    <paper-icon-button icon="event" title="Booking" on-tap="{{go}}" link="booking" class="huge home-icon"></paper-icon-button>
                     <p class="iconLabel" for>Booking</p>
                   </div>
                 </core-label>
 
                 <core-label>
-                  <div flex class="app" on-tap="{{go}}" link="https://app.library.uq.edu.au/v1/borrowing">
-                    <paper-icon-button icon="maps:local-library" title="Borrowing" on-tap="{{go}}" link="https://app.library.uq.edu.au/v1/borrowing" class="huge home-icon"></paper-icon-button>
+                  <div flex class="app" on-tap="{{go}}" link="borrowing">
+                    <paper-icon-button icon="maps:local-library" title="Borrowing" on-tap="{{go}}" link="borrowing" class="huge home-icon"></paper-icon-button>
                     <p class="iconLabel" for>Borrowing</p>
                   </div>
                 </core-label>
 
                 <core-label>
-                  <div flex class="app" on-tap="{{go}}" link="https://app.library.uq.edu.au/v1/computers/">
-                    <paper-icon-button icon="hardware:desktop-mac" title="Computers" on-tap="{{go}}" link="https://app.library.uq.edu.au/v1/computers/" class="huge home-icon"></paper-icon-button>
+                  <div flex class="app" on-tap="{{go}}" link="computers">
+                    <paper-icon-button icon="hardware:desktop-mac" title="Computers" on-tap="{{go}}" link="computers" class="huge home-icon"></paper-icon-button>
                     <p class="iconLabel" for>Computers</p>
                   </div>
                 </core-label>
 
                 <template if="{{user.classes.length}}">
                 <core-label>
-                  <div flex class="app" on-tap="{{go}}" link="https://app.library.uq.edu.au/v1/courses">
-                    <paper-icon-button icon="social:school" title="Courses" on-tap="{{go}}" link="https://app.library.uq.edu.au/v1/courses" class="huge home-icon"></paper-icon-button>
+                  <div flex class="app" on-tap="{{go}}" link="courses">
+                    <paper-icon-button icon="social:school" title="Courses" on-tap="{{go}}" link="courses" class="huge home-icon"></paper-icon-button>
                     <p class="iconLabel" for>Courses</p>
                   </div>
                 </core-label>
                 </template>
 
                 <core-label>
-                  <div flex class="app" on-tap="{{go}}" link="https://app.library.uq.edu.au/v1/hours">
-                    <paper-icon-button icon="schedule" title="Courses" on-tap="{{go}}" link="https://app.library.uq.edu.au/v1/courses" class="huge home-icon"></paper-icon-button>
+                  <div flex class="app" on-tap="{{go}}" link="hours">
+                    <paper-icon-button icon="schedule" title="Hours" on-tap="{{go}}" link="hours" class="huge home-icon"></paper-icon-button>
                     <p class="iconLabel" for>Hours</p>
+                  </div>
+                </core-label>
+
+                <core-label>
+                  <div flex class="app" on-tap="{{go}}" link="feedback">
+                    <paper-icon-button icon="communication:comment" title="Feedback" on-tap="{{go}}" link="feedback" class="huge home-icon"></paper-icon-button>
+                    <p class="iconLabel" for>Feedback</p>
                   </div>
                 </core-label>
 
@@ -141,60 +144,12 @@
         transitioning: false,
 
         created: function () {
-          this.notifications = [
-            {
-              text: 'You have new booking',
-              image: 'images/notification.png',
-              link: 'https://app.library.uq.edu.au/v1/booking',
-              isNew: true
-            },
-            {
-              text: 'You 2 loans overdue',
-              link: 'https://app.library.uq.edu.au/v1/booking',
-              isNew: true
-            },
-            {
-              text: 'New e-journal have been released',
-              link: 'https://app.library.uq.edu.au/v1/booking',
-              isNew: false
-            },
-            {
-              text: 'You have new booking',
-              image: 'images/notification.png',
-              link: '',
-              isNew: false
-            },
-            {
-              text: 'You 2 loans overdue',
-              link: 'https://app.library.uq.edu.au/v1/booking',
-              isNew: false
-            }
-          ];
+
           this.pageTransitions = {
-            showLoansPage: {
-              transition: 'slide-from-right',
-              destination: 'loansPage',
-              action: 'showLoansPage'
-            },
-            showAvailabilityPage: {
-              transition: 'slide-from-right',
-              destination: 'availabilityPage',
-              action: 'showAvailabilityPage'
-            },
-            showHoursPage: {
-              transition: 'slide-from-right',
-              destination: 'hoursPage',
-              action: 'showHoursPage'
-            },
             showMasqueradePage: {
               transition: 'slide-from-right',
               destination: 'masqueradePage',
               action: 'showMasqueradePage'
-            },
-            showCoursesPage: {
-              transition: 'slide-from-right',
-              destination: 'coursesPage',
-              action: 'showCoursesPage'
             }
           };
         },
@@ -205,15 +160,24 @@
             if (e.detail.hasSession) {
               that.user = e.detail;
             } else {
-              that.$.account.login('https://app.library.uq.edu.au/v1/home');
+              that.$.account.login(document.location.href);
             }
           });
           this.$.account.get();
           this.showHomePage();
         },
 
+        constructURL: function(currentURL, nextURL) {
+          if (nextURL.indexOf('http') < 0) {
+            //if path is relative, update current path
+            var nextUrlMatch = currentURL.match("^(.*[\\\/]){3}");
+            nextURL = currentURL.replace(nextUrlMatch[1], nextURL + "/");
+          }
+          return nextURL;
+        },
+
         go: function (e, _, el) {
-          document.location.href = el.attributes.link.value;
+          document.location.href = this.constructURL(document.URL,el.attributes.link.value);
         },
 
         showHomePage: function() {
@@ -225,48 +189,6 @@
             leftButton: {icon:'menu'},
             title: 'My Library'
           };
-        },
-
-        showLoansPage: function() {
-          this.pageTransitions.toolBarLeftButton = {
-            transition: 'slide-from-right',
-            destination: 'homePage',
-            action: 'showHomePage'
-          };
-
-          this.pageToolbar = {
-            leftButton: {icon:'arrow-back'},
-            title: 'Loans'
-          };
-          this.$.loansPageEl.show();
-        },
-
-        showAvailabilityPage: function() {
-          this.pageTransitions.toolBarLeftButton = {
-            transition: 'slide-from-right',
-            destination: 'homePage',
-            action: 'showHomePage'
-          };
-
-          this.pageToolbar = {
-            leftButton: {icon:'arrow-back'},
-            title: 'Computers'
-          };
-          this.$.availabilityPageEl.show();
-        },
-
-        showHoursPage: function() {
-          this.pageTransitions.toolBarLeftButton = {
-            transition: 'slide-from-right',
-            destination: 'homePage',
-            action: 'showHomePage'
-          };
-
-          this.pageToolbar = {
-            leftButton: {icon:'arrow-back'},
-            title: 'Hours'
-          };
-          this.$.hoursPageEl.show();
         },
 
         showMasqueradePage: function() {
@@ -282,26 +204,11 @@
           };
         },
 
-        showCoursesPage: function() {
-          this.pageTransitions.toolBarLeftButton = {
-            transition: 'slide-from-right',
-            destination: 'homePage',
-            action: 'showHomePage'
-          };
-
-          this.pageToolbar = {
-            leftButton: {icon:'arrow-back'},
-            title: 'Courses'
-          };
-
-          this.$.coursesPageEl.show();
-
-        },
-
         transitionPrepareHandler: function() {
           this.transitioning = true;
           this.fire('core-signal', {name: "transitioning-change", data: {transitioning: this.transitioning}});
         },
+
         transitionEndHandler: function() {
           this.transitioning = false;
           this.fire('core-signal', {name: "transitioning-change", data: {transitioning: this.transitioning}});
