@@ -45,45 +45,45 @@
               <div flex class="apps" horizontal layout wrap>
 
                 <core-label>
-                  <div flex class="app" on-tap="{{go}}" link="/booking">
-                    <paper-icon-button icon="event" title="Booking" on-tap="{{go}}" link="/booking" class="huge home-icon"></paper-icon-button>
+                  <div flex class="app" on-tap="{{go}}" link="booking">
+                    <paper-icon-button icon="event" title="Booking" on-tap="{{go}}" link="booking" class="huge home-icon"></paper-icon-button>
                     <p class="iconLabel" for>Booking</p>
                   </div>
                 </core-label>
 
                 <core-label>
-                  <div flex class="app" on-tap="{{go}}" link="/borrowing">
-                    <paper-icon-button icon="maps:local-library" title="Borrowing" on-tap="{{go}}" link="/borrowing" class="huge home-icon"></paper-icon-button>
+                  <div flex class="app" on-tap="{{go}}" link="borrowing">
+                    <paper-icon-button icon="maps:local-library" title="Borrowing" on-tap="{{go}}" link="borrowing" class="huge home-icon"></paper-icon-button>
                     <p class="iconLabel" for>Borrowing</p>
                   </div>
                 </core-label>
 
                 <core-label>
-                  <div flex class="app" on-tap="{{go}}" link="/computers/">
-                    <paper-icon-button icon="hardware:desktop-mac" title="Computers" on-tap="{{go}}" link="/computers/" class="huge home-icon"></paper-icon-button>
+                  <div flex class="app" on-tap="{{go}}" link="computers">
+                    <paper-icon-button icon="hardware:desktop-mac" title="Computers" on-tap="{{go}}" link="computers" class="huge home-icon"></paper-icon-button>
                     <p class="iconLabel" for>Computers</p>
                   </div>
                 </core-label>
 
                 <template if="{{user.classes.length}}">
                 <core-label>
-                  <div flex class="app" on-tap="{{go}}" link="/courses">
-                    <paper-icon-button icon="social:school" title="Courses" on-tap="{{go}}" link="/courses" class="huge home-icon"></paper-icon-button>
+                  <div flex class="app" on-tap="{{go}}" link="courses">
+                    <paper-icon-button icon="social:school" title="Courses" on-tap="{{go}}" link="courses" class="huge home-icon"></paper-icon-button>
                     <p class="iconLabel" for>Courses</p>
                   </div>
                 </core-label>
                 </template>
 
                 <core-label>
-                  <div flex class="app" on-tap="{{go}}" link="/hours">
-                    <paper-icon-button icon="schedule" title="Hours" on-tap="{{go}}" link="/hours" class="huge home-icon"></paper-icon-button>
+                  <div flex class="app" on-tap="{{go}}" link="hours">
+                    <paper-icon-button icon="schedule" title="Hours" on-tap="{{go}}" link="hours" class="huge home-icon"></paper-icon-button>
                     <p class="iconLabel" for>Hours</p>
                   </div>
                 </core-label>
 
                 <core-label>
-                  <div flex class="app" on-tap="{{go}}" link="/feedback">
-                    <paper-icon-button icon="communication:comment" title="Feedback" on-tap="{{go}}" link="/feedback" class="huge home-icon"></paper-icon-button>
+                  <div flex class="app" on-tap="{{go}}" link="feedback">
+                    <paper-icon-button icon="communication:comment" title="Feedback" on-tap="{{go}}" link="feedback" class="huge home-icon"></paper-icon-button>
                     <p class="iconLabel" for>Feedback</p>
                   </div>
                 </core-label>
@@ -160,15 +160,24 @@
             if (e.detail.hasSession) {
               that.user = e.detail;
             } else {
-              that.$.account.login('https://app.library.uq.edu.au/v1/home');
+              that.$.account.login(document.location.href);
             }
           });
           this.$.account.get();
           this.showHomePage();
         },
 
+        constructURL: function(currentURL, nextURL) {
+          if (nextURL.indexOf('http') < 0) {
+            //if path is relative, update current path
+            var nextUrlMatch = currentURL.match("^(.*[\\\/]){3}");
+            nextURL = currentURL.replace(nextUrlMatch[1], nextURL + "/");
+          }
+          return nextURL;
+        },
+
         go: function (e, _, el) {
-          document.location.href = el.attributes.link.value;
+          document.location.href = this.constructURL(document.URL,el.attributes.link.value);
         },
 
         showHomePage: function() {
