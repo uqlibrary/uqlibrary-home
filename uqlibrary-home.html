@@ -22,7 +22,7 @@
             id="toolBarLeftButton"
             hidden?="{{!pageToolbar.leftButton.icon}}"
             icon="{{pageToolbar.leftButton.icon ? pageToolbar.leftButton.icon : ''}}"></paper-icon-button>
-          <span flex id="toolbar-page-title">{{pageToolbar.title}}</span>
+          <h1 flex id="toolbar-page-title" class="body1 inverse">{{pageToolbar.title}}</h1>
           <paper-icon-button
             id="toolBarRightButton"
             on-tap="{{doTransition}}"
@@ -42,6 +42,7 @@
                 <div flex><uqlibrary-search></uqlibrary-search></div>
                 </div>
 
+                <!--<div flex horizontal center-justified layout>-->
               <div flex class="apps" horizontal layout wrap>
 
                 <core-label>
@@ -99,6 +100,7 @@
 
                 </template>
               </div>
+                <!--</div>-->
 
             </section>
 
