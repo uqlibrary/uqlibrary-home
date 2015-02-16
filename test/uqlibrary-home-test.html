@@ -22,21 +22,7 @@
         before(function () {
 
         });
-        test('constructs proper url', function(done) {
 
-          //constructs url
-          var coursesURL = myEl.constructURL('http://app.library.uq.edu.au/v1/home/','courses');
-          expect(coursesURL).to.be.equal('http://app.library.uq.edu.au/v1/courses/');
-
-          var demoURL = myEl.constructURL('http://app.library.uq.edu.au/v1/courses/demo.html','booking');
-          expect(demoURL).to.be.equal('http://app.library.uq.edu.au/v1/booking/demo.html');
-
-          var absoluteURL = myEl.constructURL('http://app.library.uq.edu.au/v1/home/','http://library.uq.edu.au');
-          expect(absoluteURL).to.be.equal('http://library.uq.edu.au');
-
-          done();
-
-        });
       });
 
     });
