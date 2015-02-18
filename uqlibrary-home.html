@@ -51,43 +51,43 @@
                                   <!--on-keys-pressed="{{moveFocus}}"></core-a11y-keys>-->
                   <a href="/booking" class="app">
                       <paper-button>
-                          <core-icon icon="event" class="huge home-icon"></core-icon>
+                          <core-icon alt="Manage or view My Library Booking" icon="event" class="huge home-icon"></core-icon>
                       </paper-button>
                       <p class="iconLabel" for>Booking</p>
                   </a>
                   <a href="/borrowing" class="app">
                       <paper-button>
-                          <core-icon icon="maps:local-library" class="huge home-icon"></core-icon>
+                          <core-icon alt="Manage or view My Library Borrowing" icon="maps:local-library" class="huge home-icon"></core-icon>
                       </paper-button>
                       <p class="iconLabel" for>Borrowing</p>
                   </a>
 
                   <a href="/computers" class="app">
-                      <paper-button><core-icon icon="hardware:desktop-mac" class="huge home-icon"></core-icon></paper-button>
+                      <paper-button><core-icon alt="View My Library Hours" icon="hardware:desktop-mac" class="huge home-icon"></core-icon></paper-button>
                       <p class="iconLabel" for>Computers</p>
                   </a>
 
                 <template if="{{user.classes.length}}">
                     <a href="/courses" class="app">
-                        <paper-button><core-icon icon="social:school" class="huge home-icon"></core-icon></paper-button>
+                        <paper-button><core-icon alt="View My Library Course Learning Resources" icon="social:school" class="huge home-icon"></core-icon></paper-button>
                         <p class="iconLabel" for>Courses</p>
                     </a>
                 </template>
 
                   <a href="/hours" class="app">
-                      <paper-button><core-icon icon="schedule" class="huge home-icon"></core-icon></paper-button>
+                      <paper-button><core-icon alt="View My Library Opening Hours" icon="schedule" class="huge home-icon"></core-icon></paper-button>
                       <p class="iconLabel" for>Hours</p>
                   </a>
 
                   <a href="/feedback" class="app">
-                      <paper-button><core-icon icon="communication:comment" class="huge home-icon"></core-icon></paper-button>
+                      <paper-button><core-icon alt="Leave Feedback for My Library" icon="communication:comment" class="huge home-icon"></core-icon></paper-button>
                       <p class="iconLabel" for>Feedback</p>
                   </a>
 
                 <template if="{{user.canMasquerade}}">
 
                     <a href="/masquerade" class="app">
-                        <paper-button><core-icon icon="perm-identity" class="huge home-icon"></core-icon></paper-button>
+                        <paper-button><core-icon alt="Masquerade as a Library user" icon="perm-identity" class="huge home-icon"></core-icon></paper-button>
                         <p class="iconLabel" for>Masquerade</p>
                     </a>
 
