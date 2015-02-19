@@ -9,6 +9,8 @@
 
     <uqlibrary-api-account id="account"></uqlibrary-api-account>
 
+
+
     <core-drawer-panel id="drawerPanel" class="drawer" drawerWidth="256px" responsiveWidth="768px">
 
       <core-header-panel drawer>
@@ -22,7 +24,7 @@
             id="toolBarLeftButton"
             hidden?="{{!pageToolbar.leftButton.icon}}"
             icon="{{pageToolbar.leftButton.icon ? pageToolbar.leftButton.icon : ''}}"></paper-icon-button>
-          <span flex id="toolbar-page-title">{{pageToolbar.title}}</span>
+          <h1 flex id="toolbar-page-title" class="body1 inverse">{{pageToolbar.title}}</h1>
           <paper-icon-button
             id="toolBarRightButton"
             on-tap="{{doTransition}}"
@@ -42,85 +44,62 @@
                 <div flex><uqlibrary-search></uqlibrary-search></div>
                 </div>
 
-              <div flex class="apps" horizontal layout wrap>
+              <div flex class="apps" id="apps" horizontal layout wrap>
 
-                <core-label>
-                  <div flex class="app" on-tap="{{go}}" link="booking">
-                    <paper-icon-button icon="event" title="Booking" on-tap="{{go}}" link="booking" class="huge home-icon"></paper-icon-button>
-                    <p class="iconLabel" for>Booking</p>
-                  </div>
-                </core-label>
+                  <!--<core-a11y-keys target="{{$.apps}}"-->
+                                  <!--keys="enter space"-->
+                                  <!--on-keys-pressed="{{moveFocus}}"></core-a11y-keys>-->
+                  <a href="../booking" class="app">
+                      <paper-button>
+                          <core-icon alt="Manage or view My Library Booking" icon="event" class="huge home-icon"></core-icon>
+                      </paper-button>
+                      <p class="iconLabel" for>Booking</p>
+                  </a>
+                  <a href="../borrowing" class="app">
+                      <paper-button>
+                          <core-icon alt="Manage or view My Library Borrowing" icon="maps:local-library" class="huge home-icon"></core-icon>
+                      </paper-button>
+                      <p class="iconLabel" for>Borrowing</p>
+                  </a>
 
-                <core-label>
-                  <div flex class="app" on-tap="{{go}}" link="borrowing">
-                    <paper-icon-button icon="maps:local-library" title="Borrowing" on-tap="{{go}}" link="borrowing" class="huge home-icon"></paper-icon-button>
-                    <p class="iconLabel" for>Borrowing</p>
-                  </div>
-                </core-label>
-
-                <core-label>
-                  <div flex class="app" on-tap="{{go}}" link="computers">
-                    <paper-icon-button icon="hardware:desktop-mac" title="Computers" on-tap="{{go}}" link="computers" class="huge home-icon"></paper-icon-button>
-                    <p class="iconLabel" for>Computers</p>
-                  </div>
-                </core-label>
+                  <a href="../computers" class="app">
+                      <paper-button><core-icon alt="View My Library Hours" icon="hardware:desktop-mac" class="huge home-icon"></core-icon></paper-button>
+                      <p class="iconLabel" for>Computers</p>
+                  </a>
 
                 <template if="{{user.classes.length}}">
-                <core-label>
-                  <div flex class="app" on-tap="{{go}}" link="courses">
-                    <paper-icon-button icon="social:school" title="Courses" on-tap="{{go}}" link="courses" class="huge home-icon"></paper-icon-button>
-                    <p class="iconLabel" for>Courses</p>
-                  </div>
-                </core-label>
+                    <a href="../courses" class="app">
+                        <paper-button><core-icon alt="View My Library Course Learning Resources" icon="social:school" class="huge home-icon"></core-icon></paper-button>
+                        <p class="iconLabel" for>Courses</p>
+                    </a>
                 </template>
 
-                <core-label>
-                  <div flex class="app" on-tap="{{go}}" link="hours">
-                    <paper-icon-button icon="schedule" title="Hours" on-tap="{{go}}" link="hours" class="huge home-icon"></paper-icon-button>
-                    <p class="iconLabel" for>Hours</p>
-                  </div>
-                </core-label>
+                  <a href="../hours" class="app">
+                      <paper-button><core-icon alt="View My Library Opening Hours" icon="schedule" class="huge home-icon"></core-icon></paper-button>
+                      <p class="iconLabel" for>Hours</p>
+                  </a>
 
-                <core-label>
-                  <div flex class="app" on-tap="{{go}}" link="feedback">
-                    <paper-icon-button icon="communication:comment" title="Feedback" on-tap="{{go}}" link="feedback" class="huge home-icon"></paper-icon-button>
-                    <p class="iconLabel" for>Feedback</p>
-                  </div>
-                </core-label>
+                  <a href="../feedback" class="app">
+                      <paper-button><core-icon alt="Leave Feedback for My Library" icon="communication:comment" class="huge home-icon"></core-icon></paper-button>
+                      <p class="iconLabel" for>Feedback</p>
+                  </a>
 
                 <template if="{{user.canMasquerade}}">
 
-                  <core-label on-tap="{{doTransition}}" id="showMasqueradePage">
-                    <div flex class="app" >
-                      <paper-icon-button icon="perm-identity" title="Masquerade" class="huge home-icon"></paper-icon-button>
-                      <p class="iconLabel" for>Masquerade</p>
-                    </div>
-                  </core-label>
+                    <a href="../masquerade" class="app">
+                        <paper-button><core-icon alt="Masquerade as another Library user" icon="perm-identity" class="huge home-icon"></core-icon></paper-button>
+                        <p class="iconLabel" for>Masquerade</p>
+                    </a>
 
                 </template>
               </div>
 
             </section>
 
-            <section id="loansPage">
-              <uqlibrary-loans-page id="loansPageEl"></uqlibrary-loans-page>
-            </section>
-
-            <section id="hoursPage">
-              <uqlibrary-hours-page id="hoursPageEl"></uqlibrary-hours-page>
-            </section>
-
-            <section id="availabilityPage">
-              <uqlibrary-availability-page id="availabilityPageEl"></uqlibrary-availability-page>
-            </section>
-
-            <section id="masqueradePage">
+              <section id="masqueradePage">
               <uqlibrary-masquerade-page id="masqueradePageEl"></uqlibrary-masquerade-page>
             </section>
 
-            <section id="coursesPage">
-              <uqlibrary-courses-page id="coursesPageEl" user="{{user}}"></uqlibrary-courses-page>
-            </section>
           </core-animated-pages>
 
         </div>
@@ -165,19 +144,6 @@
           });
           this.$.account.get();
           this.showHomePage();
-        },
-
-        constructURL: function(currentURL, nextURL) {
-          if (nextURL.indexOf('http') < 0) {
-            //if path is relative, update current path
-            var nextUrlMatch = currentURL.match("^(.*[\\\/]){3}");
-            nextURL = currentURL.replace(nextUrlMatch[1], nextURL + "/");
-          }
-          return nextURL;
-        },
-
-        go: function (e, _, el) {
-          document.location.href = this.constructURL(document.URL,el.attributes.link.value);
         },
 
         showHomePage: function() {
