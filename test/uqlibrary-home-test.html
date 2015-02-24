@@ -16,27 +16,53 @@
 
   <script>
     window.addEventListener('polymer-ready', function() {
-      var myEl = document.querySelector('uqlibrary-home');
+      var parent = document.querySelector('uqlibrary-home');
+        var mainContent = parent.shadowRoot.querySelector('core-drawer-panel').querySelector('.main');
+        var homeElements = mainContent.querySelector('#content').querySelector('#pages').querySelector('#homePage');
 
       describe('uqlibrary-home', function () {
         before(function () {
 
         });
-        test('constructs proper url', function(done) {
 
-          //constructs url
-          var coursesURL = myEl.constructURL('http://app.library.uq.edu.au/v1/home/','courses');
-          expect(coursesURL).to.be.equal('http://app.library.uq.edu.au/v1/courses/');
+          test('my library home should have proper core drawer panel structure and heading for accessibility', function(done) {
+              setTimeout(function() {
+                  var pageTitle = mainContent.querySelector('core-toolbar').querySelector('h1').innerText;
+                  expect(pageTitle).to.be.equal("My Library");
+                  done();
+              }, 10);
+          });
 
-          var demoURL = myEl.constructURL('http://app.library.uq.edu.au/v1/courses/demo.html','booking');
-          expect(demoURL).to.be.equal('http://app.library.uq.edu.au/v1/booking/demo.html');
+          test('my library home should have the search box', function(done) {
+              setTimeout(function() {
+                  var searchBox = homeElements.querySelectorAll('div')[0].querySelector('div').querySelector('uqlibrary-search').shadowRoot.querySelector('paper-shadow');
+                  expect(searchBox.id).to.be.equal("searchWrapper");
+                  done();
+              }, 10);
+          });
 
-          var absoluteURL = myEl.constructURL('http://app.library.uq.edu.au/v1/home/','http://library.uq.edu.au');
-          expect(absoluteURL).to.be.equal('http://library.uq.edu.au');
+          test('my library home should have 6 home screen icons', function(done) {
+              setTimeout(function() {
+                  var homeApps = homeElements.querySelector('#apps').querySelectorAll('a');
+                  expect(homeApps.length).to.be.at.least(1);
+                  done();
+              }, 10);
+          });
 
-          done();
+          test('my library home screen icons should be accessible', function(done) {
+              setTimeout(function() {
+                  var homeApps = homeElements.querySelector('#apps').querySelectorAll('a');
+                  var numApps = 0;
+                  while (numApps < homeApps.length) {
+                      expect(homeApps[numApps].querySelector('paper-button').querySelector('core-icon')).to.have.property('alt');
+                      expect(homeApps[numApps].querySelector('paper-button').querySelector('core-icon').alt).to.not.equal("");
+                      numApps++;
+                  }
+                  done();
+              }, 10);
+          });
 
-        });
+
       });
 
     });
