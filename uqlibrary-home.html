@@ -1,6 +1,5 @@
 <link rel="import" href="../uqlibrary-elements/0.5.4/lib/vulcanized.html">
 <link rel="import" href="uqlibrary-app.html">
-<link rel="import" href="uqlibrary-masquerade-page.html">
 
 <polymer-element name="uqlibrary-home" extends="uqlibrary-app">
 
@@ -8,8 +7,6 @@
     <link rel="stylesheet" href="../uqlibrary-elements/resources/theme/element.css">
 
     <uqlibrary-api-account id="account"></uqlibrary-api-account>
-
-
 
     <core-drawer-panel id="drawerPanel" class="drawer" drawerWidth="256px" responsiveWidth="768px">
 
@@ -46,9 +43,6 @@
 
               <div flex class="apps" id="apps" horizontal layout wrap>
 
-                  <!--<core-a11y-keys target="{{$.apps}}"-->
-                                  <!--keys="enter space"-->
-                                  <!--on-keys-pressed="{{moveFocus}}"></core-a11y-keys>-->
                   <a href="../chat" class="app">
                       <paper-button>
                           <core-icon alt="Ask the Library for help" icon="question-answer" class="huge home-icon"></core-icon>
@@ -102,10 +96,6 @@
 
             </section>
 
-              <section id="masqueradePage">
-              <uqlibrary-masquerade-page id="masqueradePageEl"></uqlibrary-masquerade-page>
-            </section>
-
           </core-animated-pages>
 
         </div>
@@ -131,11 +121,6 @@
         created: function () {
 
           this.pageTransitions = {
-            showMasqueradePage: {
-              transition: 'slide-from-right',
-              destination: 'masqueradePage',
-              action: 'showMasqueradePage'
-            }
           };
         },
 
@@ -160,19 +145,6 @@
           this.pageToolbar = {
             leftButton: {icon:'menu'},
             title: 'My Library'
-          };
-        },
-
-        showMasqueradePage: function() {
-          this.pageTransitions.toolBarLeftButton = {
-            transition: 'slide-from-right',
-            destination: 'homePage',
-            action: 'showHomePage'
-          };
-
-          this.pageToolbar = {
-            leftButton: {icon:'arrow-back'},
-            title: 'Masquerade'
           };
         },
 
