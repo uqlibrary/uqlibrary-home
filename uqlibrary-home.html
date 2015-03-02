@@ -100,7 +100,10 @@
 
                   <uqlibrary-masquerade-page id="masqueradePageEl"></uqlibrary-masquerade-page>
 
+
                 </template>
+
+
               </div>
 
             </section>
@@ -118,54 +121,54 @@
   </template>
 
   <script>
-    (function() {
-      Polymer('uqlibrary-home', {
+    Polymer('uqlibrary-home', {
 
-        appName: 'HOME',
+      appName: 'HOME',
 
-        transition: 'slide-from-right',
-        currentPage: 'homePage',
-        transitioning: false,
+      transition: 'slide-from-right',
+      currentPage: 'homePage',
+      transitioning: false,
 
-        created: function () {
-        },
+      created: function () {
+        this.pageTransitions = {
+        };
+      },
 
-        ready: function() {
-          var that = this;
-          this.$.account.addEventListener('uqlibrary-api-account-loaded', function(e) {
-            if (e.detail.hasSession) {
-              that.user = e.detail;
-            } else {
-              that.$.account.login(document.location.href);
-            }
-          });
-          this.$.account.get();
-          this.showHomePage();
-        },
+      ready: function() {
+        var that = this;
 
-        showHomePage: function() {
-          this.pageTransitions.toolBarLeftButton = {
-            action: 'togglePanel'
-          };
+        this.$.account.addEventListener('uqlibrary-api-account-loaded', function(e) {
+          if (e.detail.hasSession) {
+            that.user = e.detail;
+          } else {
+            that.$.account.login(document.location.href);
+          }
+        });
+        this.$.account.get();
+        this.showHomePage();
+      },
 
-          this.pageToolbar = {
-            leftButton: {icon:'menu'},
-            title: 'My Library'
-          };
-        },
+      showHomePage: function() {
+        this.pageTransitions.toolBarLeftButton = {
+          action: 'togglePanel'
+        };
 
-        transitionPrepareHandler: function() {
-          this.transitioning = true;
-          this.fire('core-signal', {name: "transitioning-change", data: {transitioning: this.transitioning}});
-        },
+        this.pageToolbar = {
+          leftButton: {icon:'menu'},
+          title: 'My Library'
+        };
+      },
 
-        transitionEndHandler: function() {
-          this.transitioning = false;
-          this.fire('core-signal', {name: "transitioning-change", data: {transitioning: this.transitioning}});
-        }
+      transitionPrepareHandler: function() {
+        this.transitioning = true;
+        this.fire('core-signal', {name: "transitioning-change", data: {transitioning: this.transitioning}});
+      },
 
-      });
-    })();
+      transitionEndHandler: function() {
+        this.transitioning = false;
+        this.fire('core-signal', {name: "transitioning-change", data: {transitioning: this.transitioning}});
+      }
+    });
   </script>
 
 </polymer-element>
