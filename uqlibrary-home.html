@@ -33,7 +33,6 @@
         </core-toolbar>
 
         <div id="content">
-
           <core-animated-pages
             id="pages"
             transitions="{{transition}}"
@@ -98,11 +97,13 @@
                         <p class="iconLabel" for>Masquerade</p>
                     </a>
 
-                  <uqlibrary-masquerade-page id="masqueradePageEl"></uqlibrary-masquerade-page>
-
                 </template>
               </div>
 
+            </section>
+
+              <section id="masqueradePage">
+              <uqlibrary-masquerade-page id="masqueradePageEl"></uqlibrary-masquerade-page>
             </section>
 
           </core-animated-pages>
@@ -128,6 +129,14 @@
         transitioning: false,
 
         created: function () {
+
+          this.pageTransitions = {
+            showMasqueradePage: {
+              transition: 'slide-from-right',
+              destination: 'masqueradePage',
+              action: 'showMasqueradePage'
+            }
+          };
         },
 
         ready: function() {
@@ -151,6 +160,19 @@
           this.pageToolbar = {
             leftButton: {icon:'menu'},
             title: 'My Library'
+          };
+        },
+
+        showMasqueradePage: function() {
+          this.pageTransitions.toolBarLeftButton = {
+            transition: 'slide-from-right',
+            destination: 'homePage',
+            action: 'showHomePage'
+          };
+
+          this.pageToolbar = {
+            leftButton: {icon:'arrow-back'},
+            title: 'Masquerade'
           };
         },
 
