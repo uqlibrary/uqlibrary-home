@@ -16,12 +16,18 @@
 
       <core-header-panel main class="main">
         <core-toolbar>
+          <core-a11y-keys id="a11yToolBarLeftButton" target="{{$.toolBarLeftButton}}" keys="{{keyboardNavigationKeys}}"
+                          on-keys-pressed="{{ a11yKeyPressed }}"></core-a11y-keys>
           <paper-icon-button
             core-drawer-toggle
             id="toolBarLeftButton"
             hidden?="{{!pageToolbar.leftButton.icon}}"
             icon="{{pageToolbar.leftButton.icon ? pageToolbar.leftButton.icon : ''}}"></paper-icon-button>
+
           <h1 flex id="toolbar-page-title" class="body1 inverse">{{pageToolbar.title}}</h1>
+
+          <core-a11y-keys id="a11ytoolBarRightButton" target="{{$.toolBarRightButton}}" keys="{{keyboardNavigationKeys}}"
+                          on-keys-pressed="{{ a11yKeyPressed }}"></core-a11y-keys>
           <paper-icon-button
             id="toolBarRightButton"
             on-tap="{{doTransition}}"
@@ -111,6 +117,16 @@
   <script>
     (function() {
       Polymer('uqlibrary-home', {
+
+        // Accessibility issues fixes
+
+        keyboardNavigationKeys: 'space enter',
+
+        a11yKeyPressed: function(source, event) {
+          if (source.path && source.path.length > 0 && source.path[0].target) {
+            source.path[0].target.fire("tap");
+          }
+        },
 
         appName: 'HOME',
 
