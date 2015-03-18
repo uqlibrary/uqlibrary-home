@@ -17,8 +17,8 @@
   <script>
     window.addEventListener('polymer-ready', function() {
       var parent = document.querySelector('uqlibrary-home');
-        var mainContent = parent.shadowRoot.querySelector('core-drawer-panel').querySelector('.main');
-        var homeElements = mainContent.querySelector('#content').querySelector('#pages').querySelector('#homePage');
+      var mainContent = parent.shadowRoot.querySelector('core-drawer-panel').querySelector('.main');
+      var homeElements = mainContent.querySelector('#content').querySelector('#pages').querySelector('#homePage');
 
       describe('uqlibrary-home', function () {
         before(function () {
@@ -52,6 +52,7 @@
           test('my library home screen icons should be accessible', function(done) {
               setTimeout(function() {
                   var homeApps = homeElements.querySelector('#apps').querySelectorAll('a');
+
                   var numApps = 0;
                   while (numApps < homeApps.length) {
                       expect(homeApps[numApps].querySelector('paper-button').querySelector('core-icon')).to.have.property('alt');
@@ -62,6 +63,31 @@
               }, 10);
           });
 
+        test('undergraduate students should not have access to masquerade function', function(done) {
+
+          expect(parent.user.type).to.equal(1);
+
+          setTimeout(function() {
+            var masqueradeApp = homeElements.querySelector('#uqlibrary-masquerade');
+            expect(masqueradeApp).to.be.null;
+
+            done();
+          }, 1000);
+        });
+
+        test('changing user type should change availability of apps', function(done) {
+
+          parent.user.type = 18;
+          parent.userChanged();
+
+          expect(parent.user.type).to.equal(18);
+
+          setTimeout(function() {
+            var masqueradeApp = homeElements.querySelector('#uqlibrary-masquerade');
+            expect(masqueradeApp).not.to.be.null;
+            done();
+          }, 100);
+        });
 
       });
 
