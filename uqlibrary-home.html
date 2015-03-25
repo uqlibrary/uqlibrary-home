@@ -1,6 +1,5 @@
 <link rel="import" href="../uqlibrary-elements/0.5.4/lib/vulcanized.html">
 <link rel="import" href="uqlibrary-app.html">
-<link rel="import" href="uqlibrary-masquerade-page.html">
 
 <polymer-element name="uqlibrary-home" extends="uqlibrary-app">
 
@@ -8,8 +7,6 @@
     <link rel="stylesheet" href="../uqlibrary-elements/resources/theme/element.css">
 
     <uqlibrary-api-account id="account"></uqlibrary-api-account>
-
-
 
     <core-drawer-panel id="drawerPanel" class="drawer" drawerWidth="256px" responsiveWidth="768px">
 
@@ -19,12 +16,18 @@
 
       <core-header-panel main class="main">
         <core-toolbar>
+          <core-a11y-keys id="a11yToolBarLeftButton" target="{{$.toolBarLeftButton}}" keys="{{keyboardNavigationKeys}}"
+                          on-keys-pressed="{{ a11yKeyPressed }}"></core-a11y-keys>
           <paper-icon-button
             core-drawer-toggle
             id="toolBarLeftButton"
             hidden?="{{!pageToolbar.leftButton.icon}}"
             icon="{{pageToolbar.leftButton.icon ? pageToolbar.leftButton.icon : ''}}"></paper-icon-button>
+
           <h1 flex id="toolbar-page-title" class="body1 inverse">{{pageToolbar.title}}</h1>
+
+          <core-a11y-keys id="a11ytoolBarRightButton" target="{{$.toolBarRightButton}}" keys="{{keyboardNavigationKeys}}"
+                          on-keys-pressed="{{ a11yKeyPressed }}"></core-a11y-keys>
           <paper-icon-button
             id="toolBarRightButton"
             on-tap="{{doTransition}}"
@@ -46,9 +49,6 @@
 
               <div flex class="apps" id="apps" horizontal layout wrap>
 
-                  <!--<core-a11y-keys target="{{$.apps}}"-->
-                                  <!--keys="enter space"-->
-                                  <!--on-keys-pressed="{{moveFocus}}"></core-a11y-keys>-->
                   <a href="../chat" class="app">
                       <paper-button>
                           <core-icon alt="Ask the Library for help" icon="question-answer" class="huge home-icon"></core-icon>
@@ -85,6 +85,11 @@
                       <p class="iconLabel" for>Hours</p>
                   </a>
 
+                  <a href="../papercut" class="app">
+                      <paper-button><core-icon alt="Manage your printer balance" icon="print" class="huge home-icon"></core-icon></paper-button>
+                      <p class="iconLabel" for>Printing</p>
+                  </a>
+
                   <a href="../feedback" class="app">
                       <paper-button><core-icon alt="Leave Feedback for My Library" icon="communication:comment" class="huge home-icon"></core-icon></paper-button>
                       <p class="iconLabel" for>Feedback</p>
@@ -100,10 +105,6 @@
                 </template>
               </div>
 
-            </section>
-
-              <section id="masqueradePage">
-              <uqlibrary-masquerade-page id="masqueradePageEl"></uqlibrary-masquerade-page>
             </section>
 
           </core-animated-pages>
@@ -122,6 +123,16 @@
     (function() {
       Polymer('uqlibrary-home', {
 
+        // Accessibility issues fixes
+
+        keyboardNavigationKeys: 'space enter',
+
+        a11yKeyPressed: function(source, event) {
+          if (source.path && source.path.length > 0 && source.path[0].target) {
+            source.path[0].target.fire("tap");
+          }
+        },
+
         appName: 'HOME',
 
         transition: 'slide-from-right',
@@ -131,11 +142,6 @@
         created: function () {
 
           this.pageTransitions = {
-            showMasqueradePage: {
-              transition: 'slide-from-right',
-              destination: 'masqueradePage',
-              action: 'showMasqueradePage'
-            }
           };
         },
 
@@ -160,19 +166,6 @@
           this.pageToolbar = {
             leftButton: {icon:'menu'},
             title: 'My Library'
-          };
-        },
-
-        showMasqueradePage: function() {
-          this.pageTransitions.toolBarLeftButton = {
-            transition: 'slide-from-right',
-            destination: 'homePage',
-            action: 'showHomePage'
-          };
-
-          this.pageToolbar = {
-            leftButton: {icon:'arrow-back'},
-            title: 'Masquerade'
           };
         },
 
