@@ -43,15 +43,20 @@
 
           test('my library home should have 6 home screen icons', function(done) {
               setTimeout(function() {
-                  var homeApps = homeElements.querySelector('#apps').querySelectorAll('a');
-                  expect(homeApps.length).to.be.at.least(1);
-                  done();
-              }, 10);
+                var homeApps = homeElements.querySelector('#apps');
+                expect(homeApps).not.to.be.null;
+
+                var homeAppsLinks = homeElements.querySelectorAll('#apps a')
+                expect(homeAppsLinks.length).to.be.at.least(1);
+
+                done();
+              }, 1000);
           });
 
           test('my library home screen icons should be accessible', function(done) {
               setTimeout(function() {
-                  var homeApps = homeElements.querySelector('#apps').querySelectorAll('a');
+                var homeApps = homeElements.querySelectorAll('#apps a');
+                expect(homeApps.length).to.be.at.least(1);
 
                   var numApps = 0;
                   while (numApps < homeApps.length) {
@@ -86,7 +91,7 @@
             var masqueradeApp = homeElements.querySelector('#uqlibrary-masquerade');
             expect(masqueradeApp).not.to.be.null;
             done();
-          }, 100);
+          }, 1000);
         });
 
       });
