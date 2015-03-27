@@ -6,7 +6,10 @@
   <template>
     <link rel="stylesheet" href="../uqlibrary-elements/resources/theme/element.css">
 
+      <uqlibrary-ga id="ga" appName="Home"></uqlibrary-ga>
+
     <uqlibrary-api-account id="account"></uqlibrary-api-account>
+    <uqlibrary-api-applications id="apiApplications" ptype="{{user.type}}"></uqlibrary-api-applications>
 
     <core-drawer-panel id="drawerPanel" class="drawer" drawerWidth="256px" responsiveWidth="768px">
 
@@ -49,62 +52,18 @@
 
               <div flex class="apps" id="apps" horizontal layout wrap>
 
-                  <a href="../chat" class="app">
+                <template repeat="{{ applications as app }}">
+                  <template if="{{!app.isDivider && app.app}}">
+
+                    <a href="{{app.link}}" class="app" id="{{app.app}}">
                       <paper-button>
-                          <core-icon alt="Ask the Library for help" icon="question-answer" class="huge home-icon"></core-icon>
+                        <core-icon alt="{{app.description}}" icon="{{app.icon}}" class="huge home-icon"></core-icon>
                       </paper-button>
-                      <p class="iconLabel" for>Ask the Library</p>
-                  </a>
-                  <a href="../booking" class="app">
-                      <paper-button>
-                          <core-icon alt="Manage or view My Library Booking" icon="event" class="huge home-icon"></core-icon>
-                      </paper-button>
-                      <p class="iconLabel" for>Booking</p>
-                  </a>
-                  <a href="../borrowing" class="app">
-                      <paper-button>
-                          <core-icon alt="Manage or view My Library Borrowing" icon="maps:local-library" class="huge home-icon"></core-icon>
-                      </paper-button>
-                      <p class="iconLabel" for>Borrowing</p>
-                  </a>
-
-                  <a href="../computers" class="app">
-                      <paper-button><core-icon alt="View My Library Hours" icon="hardware:desktop-mac" class="huge home-icon"></core-icon></paper-button>
-                      <p class="iconLabel" for>Computers</p>
-                  </a>
-
-                <template if="{{user.classes.length}}">
-                    <a href="../courses" class="app">
-                        <paper-button><core-icon alt="View My Library Course Learning Resources" icon="social:school" class="huge home-icon"></core-icon></paper-button>
-                        <p class="iconLabel" for>Courses</p>
-                    </a>
-                </template>
-
-                  <a href="../hours" class="app">
-                      <paper-button><core-icon alt="View My Library Opening Hours" icon="schedule" class="huge home-icon"></core-icon></paper-button>
-                      <p class="iconLabel" for>Hours</p>
-                  </a>
-
-                  <a href="../papercut" class="app">
-                      <paper-button><core-icon alt="Manage your printer balance" icon="print" class="huge home-icon"></core-icon></paper-button>
-                      <p class="iconLabel" for>Printing</p>
-                  </a>
-
-                  <a href="../feedback" class="app">
-                      <paper-button><core-icon alt="Leave Feedback for My Library" icon="communication:comment" class="huge home-icon"></core-icon></paper-button>
-                      <p class="iconLabel" for>Feedback</p>
-                  </a>
-
-                <template if="{{user.canMasquerade}}">
-
-                    <a href="../masquerade" class="app">
-                        <paper-button><core-icon alt="Masquerade as another Library user" icon="perm-identity" class="huge home-icon"></core-icon></paper-button>
-                        <p class="iconLabel" for>Masquerade</p>
+                      <p class="iconLabel" for>{{app.title}}</p>
                     </a>
 
+                  </template>
                 </template>
-              </div>
-
             </section>
 
           </core-animated-pages>
@@ -140,13 +99,13 @@
         transitioning: false,
 
         created: function () {
-
           this.pageTransitions = {
           };
         },
 
         ready: function() {
           var that = this;
+
           this.$.account.addEventListener('uqlibrary-api-account-loaded', function(e) {
             if (e.detail.hasSession) {
               that.user = e.detail;
@@ -154,8 +113,18 @@
               that.$.account.login(document.location.href);
             }
           });
+
+          this.$.apiApplications.addEventListener('uqlibrary-api-applications-loaded', function(e) {
+            that.applications = e.detail;
+          });
+
           this.$.account.get();
           this.showHomePage();
+        },
+
+        userChanged: function() {
+          if (this.user && this.user.type)
+            this.$.apiApplications.get();
         },
 
         showHomePage: function() {
