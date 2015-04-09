@@ -9,7 +9,7 @@
       <uqlibrary-ga id="ga" appName="Home"></uqlibrary-ga>
 
     <uqlibrary-api-account id="account"></uqlibrary-api-account>
-    <uqlibrary-api-applications id="apiApplications" ptype="{{user.type}}"></uqlibrary-api-applications>
+    <uqlibrary-api-applications id="apiApplications" user="{{user}}"></uqlibrary-api-applications>
 
     <core-drawer-panel id="drawerPanel" class="drawer" drawerWidth="256px" responsiveWidth="768px">
 
@@ -64,6 +64,7 @@
 
                   </template>
                 </template>
+              </div>
             </section>
 
           </core-animated-pages>
