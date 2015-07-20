@@ -64,4 +64,15 @@ uqlibrary-home paper-icon-button.huge #icon {
     margin-top: -28px;
     text-transform: capitalize; }
 
+#desktop-link {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  height: 1em; }
+  #desktop-link div {
+    text-align: right;
+    padding: 1ex; }
+    #desktop-link div a {
+      color: rgba(0, 0, 0, 0.54); }
+
 /*# sourceMappingURL=uqlibrary-home.css.map */
