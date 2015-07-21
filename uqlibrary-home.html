@@ -86,8 +86,8 @@
 
     <footer id="desktop-link">
       <div>
-        <a href="https://www.library.uq.edu.au/mylibrary">
-          <core-icon alt="Switch to My Library desktop " icon="exit-to-app"></core-icon>
+        <core-icon alt="Switch to My Library desktop " icon="exit-to-app"></core-icon>
+        <a href on-click="{{setCookieAndRedirect}}">
           Go to My Library Desktop version
         </a>
       </div>
@@ -97,6 +97,11 @@
 
   <script>
     (function () {
+      var desktopMyLibrary = 'https://www.library.uq.edu.au/mylibrary';
+      var myLibraryCookieName = 'UQL_MYLIBRARY_URL';
+      var libraryCookieDomain = '.library.uq.edu.au';
+      var cookieDays = 30;
+
       Polymer('uqlibrary-home', {
 
         // Accessibility issues fixes
@@ -115,8 +120,34 @@
         currentPage: 'homePage',
         transitioning: false,
 
+        checkForPersistenceInUrl: function () {
+          var val = this.getCookie(myLibraryCookieName);
+          if (val === desktopMyLibrary) {
+            document.location.href = desktopMyLibrary;
+          }
+        },
+
         created: function () {
           this.pageTransitions = {};
+
+          // whilst we have 2 versions of my library (drupal and webcomponents style)
+          // check if they have asked to persist this version
+          this.checkForPersistenceInUrl();
+        },
+
+        /**
+         * Gets a cookie by name
+         * @param name the name of the cookie to return
+         * @returns {String}
+         */
+        getCookie: function (name) {
+          var parts = document.cookie.split(';');
+          for (var i = 0, l = parts.length; i < l; i++) {
+            var cookieParts = parts[i].trim().split('=');
+            if (decodeURIComponent(cookieParts[0]) === name) {
+              return decodeURIComponent(cookieParts[1]);
+            }
+          }
         },
 
         ready: function () {
@@ -137,6 +168,24 @@
 
           this.$.account.get();
           this.showHomePage();
+        },
+
+        setCookieAndRedirect: function (event) {
+          // see if we are in dev
+          var mockData = this.getCookie('UQLMockData');
+          var date = new Date();
+          date.setTime(date.getTime()+(cookieDays*24*60*60*1000));
+          var cookieParts = [
+            encodeURIComponent(myLibraryCookieName) + '=' + encodeURIComponent(desktopMyLibrary),
+            'path=/',
+            'domain=' + mockData === 'enabled' ? '' : libraryCookieDomain,
+            'expires=' + date.toGMTString()
+          ];
+          var cookie = cookieParts.join('; ');
+          document.cookie = cookie;
+          document.location.href = desktopMyLibrary;
+          event.preventDefault;
+          return false;
         },
 
         userChanged: function () {
