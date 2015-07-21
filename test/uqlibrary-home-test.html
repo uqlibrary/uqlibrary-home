@@ -27,7 +27,7 @@
 
           test('my library home should have proper core drawer panel structure and heading for accessibility', function(done) {
               setTimeout(function() {
-                  var pageTitle = mainContent.querySelector('core-toolbar').querySelector('h1').innerText;
+                  var pageTitle = mainContent.querySelector('core-toolbar').querySelector('h1').textContent;
                   expect(pageTitle).to.be.equal("My Library");
                   done();
               }, 10);

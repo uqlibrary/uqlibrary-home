@@ -90,3 +90,17 @@ uqlibrary-home paper-icon-button.huge #icon {
     text-transform: capitalize;
   }
 }
+
+#desktop-link {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  height: 1em;
+  div {
+    text-align: right;
+    padding: 1ex;
+    a {
+      color: $secondary-text;
+    }
+  }
+}
