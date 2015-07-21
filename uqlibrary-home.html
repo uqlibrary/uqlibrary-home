@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../uqlibrary-elements/resources/theme/element.css">
     <link rel="stylesheet" href="uqlibrary-home.css">
 
-      <uqlibrary-ga id="ga" appName="Home"></uqlibrary-ga>
+    <uqlibrary-ga id="ga" appName="Home"></uqlibrary-ga>
 
     <uqlibrary-api-account id="account"></uqlibrary-api-account>
     <uqlibrary-api-applications id="apiApplications" user="{{user}}"></uqlibrary-api-applications>
@@ -23,48 +23,54 @@
           <core-a11y-keys id="a11yToolBarLeftButton" target="{{$.toolBarLeftButton}}" keys="{{keyboardNavigationKeys}}"
                           on-keys-pressed="{{ a11yKeyPressed }}"></core-a11y-keys>
           <paper-icon-button
-            core-drawer-toggle
-            id="toolBarLeftButton"
-            hidden?="{{!pageToolbar.leftButton.icon}}"
-            icon="{{pageToolbar.leftButton.icon ? pageToolbar.leftButton.icon : ''}}"></paper-icon-button>
+              core-drawer-toggle
+              id="toolBarLeftButton"
+              hidden?="{{!pageToolbar.leftButton.icon}}"
+              icon="{{pageToolbar.leftButton.icon ? pageToolbar.leftButton.icon : ''}}"></paper-icon-button>
 
           <h1 flex id="toolbar-page-title" class="body1 inverse">{{pageToolbar.title}}</h1>
 
-          <core-a11y-keys id="a11ytoolBarRightButton" target="{{$.toolBarRightButton}}" keys="{{keyboardNavigationKeys}}"
+          <core-a11y-keys id="a11ytoolBarRightButton" target="{{$.toolBarRightButton}}"
+                          keys="{{keyboardNavigationKeys}}"
                           on-keys-pressed="{{ a11yKeyPressed }}"></core-a11y-keys>
           <paper-icon-button
-            id="toolBarRightButton"
-            on-tap="{{doTransition}}"
-            hidden?="{{!pageToolbar.rightButton.icon}}"
-            icon="{{pageToolbar.rightButton.icon ? pageToolbar.rightButton.icon : ''}}"></paper-icon-button>
+              id="toolBarRightButton"
+              on-tap="{{doTransition}}"
+              hidden?="{{!pageToolbar.rightButton.icon}}"
+              icon="{{pageToolbar.rightButton.icon ? pageToolbar.rightButton.icon : ''}}"></paper-icon-button>
         </core-toolbar>
 
         <div id="content">
           <core-animated-pages
-            id="pages"
-            transitions="{{transition}}"
-            on-core-animated-pages-transition-prepare="{{transitionPrepareHandler}}"
-            on-core-animated-pages-transition-end="{{transitionEndHandler}}">
+              id="pages"
+              transitions="{{transition}}"
+              on-core-animated-pages-transition-prepare="{{transitionPrepareHandler}}"
+              on-core-animated-pages-transition-end="{{transitionEndHandler}}">
 
             <section id="homePage">
-              <div flex horizontal center-justified layout>
-                <div flex><uqlibrary-search></uqlibrary-search></div>
+              <div vertical layout>
+
+                <div horizontal center-justified layout>
+                  <div flex>
+                    <uqlibrary-search></uqlibrary-search>
+                  </div>
                 </div>
 
-              <div flex class="apps" id="apps" horizontal layout wrap>
+                <div class="apps" id="apps" horizontal layout wrap>
+                  <template repeat="{{ applications as app }}">
+                    <template if="{{!app.isDivider && app.app}}">
 
-                <template repeat="{{ applications as app }}">
-                  <template if="{{!app.isDivider && app.app}}">
+                      <a href="{{app.link}}" class="app" id="{{app.app}}">
+                        <paper-button>
+                          <core-icon alt="{{app.description}}" icon="{{app.icon}}" class="huge home-icon"></core-icon>
+                        </paper-button>
+                        <p class="iconLabel" for>{{app.title}}</p>
+                      </a>
 
-                    <a href="{{app.link}}" class="app" id="{{app.app}}">
-                      <paper-button>
-                        <core-icon alt="{{app.description}}" icon="{{app.icon}}" class="huge home-icon"></core-icon>
-                      </paper-button>
-                      <p class="iconLabel" for>{{app.title}}</p>
-                    </a>
-
+                    </template>
                   </template>
-                </template>
+                </div>
+
               </div>
             </section>
 
@@ -78,17 +84,31 @@
 
     <paper-toast id="primaryToast" role="alert" text="{{toastText}}"></paper-toast>
 
+    <footer id="desktop-link">
+      <div>
+        <core-icon alt="Switch to My Library desktop " icon="exit-to-app"></core-icon>
+        <a href="javascript://" on-click="{{setCookieAndRedirect}}">
+          Go to My Library Desktop version
+        </a>
+      </div>
+    </footer>
+
   </template>
 
   <script>
-    (function() {
+    (function () {
+      var desktopMyLibrary = 'https://www.library.uq.edu.au/mylibrary';
+      var myLibraryCookieName = 'UQL_MYLIBRARY_URL';
+      var libraryCookieDomain = '.library.uq.edu.au';
+      var cookieDays = 30;
+
       Polymer('uqlibrary-home', {
 
         // Accessibility issues fixes
 
         keyboardNavigationKeys: 'space enter',
 
-        a11yKeyPressed: function(source, event) {
+        a11yKeyPressed: function (source, event) {
           if (source.path && source.path.length > 0 && source.path[0].target) {
             source.path[0].target.fire("tap");
           }
@@ -100,23 +120,49 @@
         currentPage: 'homePage',
         transitioning: false,
 
-        created: function () {
-          this.pageTransitions = {
-          };
+        checkForPersistenceInUrl: function () {
+          var val = this.getCookie(myLibraryCookieName);
+          if (val === desktopMyLibrary) {
+            //document.location.href = desktopMyLibrary;
+          }
         },
 
-        ready: function() {
+        created: function () {
+          this.pageTransitions = {};
+
+          // whilst we have 2 versions of my library (drupal and webcomponents style)
+          // check if they have asked to persist this version
+          this.checkForPersistenceInUrl();
+        },
+
+        /**
+         * Gets a cookie by name
+         * @param name the name of the cookie to return
+         * @returns {String}
+         */
+        getCookie: function (name) {
+          var parts = document.cookie.split(';');
+          for (var i = 0, l = parts.length; i < l; i++) {
+            var cookieParts = parts[i].trim().split('=');
+            if (decodeURIComponent(cookieParts[0]) === name) {
+              return decodeURIComponent(cookieParts[1]);
+            }
+          }
+        },
+
+        ready: function () {
           var that = this;
 
-          this.$.account.addEventListener('uqlibrary-api-account-loaded', function(e) {
+          this.$.account.addEventListener('uqlibrary-api-account-loaded', function (e) {
             if (e.detail.hasSession) {
               that.user = e.detail;
-            } else {
+            }
+            else {
               that.$.account.login(document.location.href);
             }
           });
 
-          this.$.apiApplications.addEventListener('uqlibrary-api-applications-loaded', function(e) {
+          this.$.apiApplications.addEventListener('uqlibrary-api-applications-loaded', function (e) {
             that.applications = e.detail;
           });
 
@@ -124,28 +170,48 @@
           this.showHomePage();
         },
 
-        userChanged: function() {
+        setCookieAndRedirect: function (event) {
+          this.$.ga.addEvent('MyLibrarySwitchToDesktop', 'Click');
+
+          // see if we are in dev
+          var mockData = this.getCookie('UQLMockData');
+          var date = new Date();
+          date.setTime(date.getTime()+(cookieDays*24*60*60*1000));
+          var cookieParts = [
+            encodeURIComponent(myLibraryCookieName) + '=' + encodeURIComponent(desktopMyLibrary),
+            'path=/',
+            'domain=' + (mockData === 'enabled' ? '' : libraryCookieDomain),
+            'expires=' + date.toGMTString()
+          ];
+          var cookie = cookieParts.join('; ');
+          document.cookie = cookie;
+          //document.location.href = desktopMyLibrary;
+          event.preventDefault;
+          return false;
+        },
+
+        userChanged: function () {
           if (this.user && this.user.type)
             this.$.apiApplications.get();
         },
 
-        showHomePage: function() {
+        showHomePage: function () {
           this.pageTransitions.toolBarLeftButton = {
             action: 'togglePanel'
           };
 
           this.pageToolbar = {
-            leftButton: {icon:'menu'},
+            leftButton: {icon: 'menu'},
             title: 'My Library'
           };
         },
 
-        transitionPrepareHandler: function() {
+        transitionPrepareHandler: function () {
           this.transitioning = true;
           this.fire('core-signal', {name: "transitioning-change", data: {transitioning: this.transitioning}});
         },
 
-        transitionEndHandler: function() {
+        transitionEndHandler: function () {
           this.transitioning = false;
           this.fire('core-signal', {name: "transitioning-change", data: {transitioning: this.transitioning}});
         }
