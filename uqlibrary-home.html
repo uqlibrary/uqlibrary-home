@@ -87,7 +87,7 @@
     <footer id="desktop-link">
       <div>
         <core-icon alt="Switch to My Library desktop " icon="exit-to-app"></core-icon>
-        <a href on-click="{{setCookieAndRedirect}}">
+        <a href="javascript://" on-click="{{setCookieAndRedirect}}">
           Go to My Library Desktop version
         </a>
       </div>
@@ -178,7 +178,7 @@
           var cookieParts = [
             encodeURIComponent(myLibraryCookieName) + '=' + encodeURIComponent(desktopMyLibrary),
             'path=/',
-            'domain=' + mockData === 'enabled' ? '' : libraryCookieDomain,
+            'domain=' + (mockData === 'enabled' ? '' : libraryCookieDomain),
             'expires=' + date.toGMTString()
           ];
           var cookie = cookieParts.join('; ');
