@@ -123,7 +123,7 @@
         checkForPersistenceInUrl: function () {
           var val = this.getCookie(myLibraryCookieName);
           if (val === desktopMyLibrary) {
-            document.location.href = desktopMyLibrary;
+            //document.location.href = desktopMyLibrary;
           }
         },
 
@@ -171,6 +171,8 @@
         },
 
         setCookieAndRedirect: function (event) {
+          this.$.ga.addEvent('MyLibrarySwitchToDesktop', 'Click');
+
           // see if we are in dev
           var mockData = this.getCookie('UQLMockData');
           var date = new Date();
@@ -183,7 +185,7 @@
           ];
           var cookie = cookieParts.join('; ');
           document.cookie = cookie;
-          document.location.href = desktopMyLibrary;
+          //document.location.href = desktopMyLibrary;
           event.preventDefault;
           return false;
         },
