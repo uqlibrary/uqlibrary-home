@@ -87,7 +87,7 @@
     <footer id="desktop-link">
       <div>
         <core-icon alt="Switch to My Library desktop " icon="exit-to-app"></core-icon>
-        <a href="javascript://" on-click="{{setCookieAndRedirect}}">
+        <a href="javascript://" on-tap="{{setCookieAndRedirect}}">
           Go to My Library Desktop version
         </a>
       </div>
@@ -171,8 +171,6 @@
         },
 
         setCookieAndRedirect: function (event) {
-          this.$.ga.addEvent('MyLibrarySwitchToDesktop', 'Click');
-
           // see if we are in dev
           var mockData = this.getCookie('UQLMockData');
           var date = new Date();
@@ -185,8 +183,10 @@
           ];
           var cookie = cookieParts.join('; ');
           document.cookie = cookie;
-          //document.location.href = desktopMyLibrary;
+          document.location.href = desktopMyLibrary;
           event.preventDefault;
+          this.$.ga.addEvent('MyLibrarySwitchToDesktop', 'Click');
+
           return false;
         },
 
