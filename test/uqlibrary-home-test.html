@@ -20,11 +20,6 @@
       var mainContent = parent.shadowRoot.querySelector('core-drawer-panel').querySelector('.main');
       var homeElements = mainContent.querySelector('#content').querySelector('#pages').querySelector('#homePage');
 
-      describe('uqlibrary-home', function () {
-        before(function () {
-
-        });
-
           test('my library home should have proper core drawer panel structure and heading for accessibility', function(done) {
               setTimeout(function() {
                   var pageTitle = mainContent.querySelector('core-toolbar').querySelector('h1').textContent;
@@ -93,8 +88,6 @@
             done();
           }, 1000);
         });
-
-      });
 
     });
   </script>
